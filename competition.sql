@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `user`
     `create_time`  datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time`  datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `is_delete`    tinyint(1)         NOT NULL DEFAULT 1 COMMENT '逻辑删除 0-删除 1-正常'
-) comment '用户表';
+) COMMENT '用户表';
 
 CREATE TABLE IF NOT EXISTS `school`
 (
@@ -21,4 +21,55 @@ CREATE TABLE IF NOT EXISTS `school`
     `create_time` datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time` datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `is_delete`   tinyint(1)         NOT NULL DEFAULT 1 COMMENT '逻辑删除 0-删除 1-正常'
-)
+) COMMENT '学校表';
+
+CREATE TABLE IF NOT EXISTS `competition`
+(
+    `id`               bigint PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT '竞赛ID',
+    `competition_name` varchar(100)       NOT NULL COMMENT '竞赛名称',
+    `description`      text               NOT NULL COMMENT '作品描述',
+    `organizer`        varchar(100)       NOT NULL COMMENT '主办单位',
+    `start_time`       datetime           NOT NULL COMMENT '报名开始时间',
+    `end_time`         datetime           NOT NULL COMMENT '报名结束时间',
+    `create_time`      datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time`      datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `is_delete`        tinyint(1)         NOT NULL DEFAULT 1 COMMENT '逻辑删除 0-删除 1-正常'
+) COMMENT '竞赛';
+
+CREATE TABLE IF NOT EXISTS `entry`
+(
+    `id`             bigint PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT '作品ID',
+    `entry_name`     varchar(100)       NOT NULL COMMENT '作品名称',
+    `description`    text               NOT NULL COMMENT '作品描述',
+    `create_time`    datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time`    datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `is_delete`      tinyint(1)         NOT NULL DEFAULT 1 COMMENT '逻辑删除 0-删除 1-正常'
+) COMMENT '参赛作品';
+
+CREATE TABLE IF NOT EXISTS `entry_member`
+(
+    `id`        bigint PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    `entry_id`  bigint             NOT NULL COMMENT '作品ID',
+    `member_id` bigint             NOT NULL COMMENT '成员ID'
+) COMMENT '作品成员';
+
+CREATE TABLE IF NOT EXISTS `entry_source`
+(
+    `id`          bigint PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT '资源ID',
+    `entry_id`    bigint             NOT NULL COMMENT '作品ID',
+    `source_type` varchar(20)        NOT NULL COMMENT '资源类型 image|video|audio|file',
+    `source_url`  varchar(256)       NOT NULL COMMENT '资源链接'
+) COMMENT '作品资源';
+
+CREATE TABLE IF NOT EXISTS `entry_comment`
+(
+    `id`           bigint PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT '评论ID',
+    `content`      text               NOT NULL COMMENT '评论内容',
+    `entry_id`     bigint             NOT NULL COMMENT '作品ID',
+    `user_id`      bigint             NOT NULL COMMENT '评论人ID',
+    `comment_type` tinyint            NOT NULL DEFAULT 1 COMMENT '评论类型 1-评论 2-回复',
+    `reply_id`     bigint COMMENT '回复的评论ID',
+    `create_time`  datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time`  datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `is_delete`    tinyint(1)         NOT NULL DEFAULT 1 COMMENT '逻辑删除 0-删除 1-正常'
+) COMMENT '作品评论';

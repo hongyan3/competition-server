@@ -14,6 +14,10 @@ import java.util.Date;
 @Data
 public class SchoolUpdateRequest implements Serializable {
     /**
+     * 学校ID
+     */
+    private Long id;
+    /**
      * 学校名称
      */
     private String schoolName;
