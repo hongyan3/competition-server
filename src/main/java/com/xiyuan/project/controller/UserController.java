@@ -1,15 +1,16 @@
 package com.xiyuan.project.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.xiyuan.project.annotation.AuthCheck;
 import com.xiyuan.project.common.BaseResponse;
 import com.xiyuan.project.common.ErrorCode;
 import com.xiyuan.project.common.ResultUtils;
 import com.xiyuan.project.exception.BusinessException;
 import com.xiyuan.project.exception.ThrowUtils;
-import com.xiyuan.project.model.dto.user.*;
+import com.xiyuan.project.model.dto.user.UserEditRequest;
+import com.xiyuan.project.model.dto.user.UserLoginRequest;
+import com.xiyuan.project.model.dto.user.UserQueryRequest;
+import com.xiyuan.project.model.dto.user.UserRegisterRequest;
 import com.xiyuan.project.model.entity.User;
-import com.xiyuan.project.model.enums.UserRoleEnum;
 import com.xiyuan.project.model.vo.UserVO;
 import com.xiyuan.project.service.UserService;
 import lombok.extern.slf4j.Slf4j;

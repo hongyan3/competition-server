@@ -1,4 +1,4 @@
-package com.xiyuan.project.model.dto.school;
+package com.xiyuan.project.model.dto.entrymember;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -7,20 +7,22 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 
- * @TableName 学校标签
+ * 作品成员
+ * @TableName entry_member
  */
-@TableName(value ="school")
+@TableName(value ="entry_member")
 @Data
-public class SchoolUpdateRequest implements Serializable {
+public class EntryMemberRemoveRequest implements Serializable {
+
     /**
-     * 学校ID
+     * 作品ID
      */
-    private Long id;
+    private Long entryId;
+
     /**
-     * 学校名称
+     * 成员ID
      */
-    private String schoolName;
+    private Long memberId;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

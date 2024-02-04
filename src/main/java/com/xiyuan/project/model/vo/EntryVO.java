@@ -1,51 +1,50 @@
 package com.xiyuan.project.model.vo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.xiyuan.project.model.entity.EntrySource;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
- * 竞赛
- * @TableName competition
+ * 参赛作品
+ * @TableName entry
  */
+@TableName(value ="entry")
 @Data
-public class CompetitionVO implements Serializable {
+public class EntryVO implements Serializable {
     /**
-     * 竞赛ID
+     * 作品ID
      */
     private Long id;
 
     /**
-     * 竞赛名称
+     * 作品名称
      */
-    private String competitionName;
+    private String entryName;
 
     /**
-     * 竞赛描述
+     * 作品描述
      */
     private String description;
 
     /**
-     * 创建人ID
+     * 创建者信息
      */
-    private String creatorId;
-    /**
-     * 主办单位
-     */
-    private String organizer;
+    private UserVO creatorInfo;
 
     /**
-     * 报名开始时间
+     * 成员列表
      */
-    private Date startTime;
+    private List<UserVO> members;
 
     /**
-     * 报名结束时间
+     * 资料列表
      */
-    private Date endTime;
-
+    private List<EntrySource> sources;
     /**
      * 创建时间
      */

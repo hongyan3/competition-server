@@ -10,46 +10,32 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 竞赛
- * @TableName competition
+ * 参赛作品
+ * @TableName entry
  */
-@TableName(value ="competition")
+@TableName(value ="entry")
 @Data
-public class Competition implements Serializable {
+public class Entry implements Serializable {
     /**
-     * 竞赛ID
+     * 作品ID
      */
     @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
-     * 竞赛名称
+     * 作品名称
      */
-    private String competitionName;
+    private String entryName;
 
     /**
-     * 竞赛描述
+     * 作品描述
      */
     private String description;
 
     /**
-     * 创建人ID
+     * 创建者ID
      */
-    private String creatorId;
-    /**
-     * 主办单位
-     */
-    private String organizer;
-
-    /**
-     * 报名开始时间
-     */
-    private Date startTime;
-
-    /**
-     * 报名结束时间
-     */
-    private Date endTime;
+    private Long creatorId;
 
     /**
      * 创建时间

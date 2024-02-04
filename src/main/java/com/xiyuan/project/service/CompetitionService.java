@@ -1,9 +1,8 @@
 package com.xiyuan.project.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.xiyuan.project.model.dto.competition.CompetitionQueryRequest;
-import com.xiyuan.project.model.entity.Competition;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xiyuan.project.model.dto.competition.CompetitionQueryRequest;
 import com.xiyuan.project.model.entity.Competition;
 import com.xiyuan.project.model.vo.CompetitionVO;
 
@@ -28,7 +27,7 @@ public interface CompetitionService extends IService<Competition> {
      */
     CompetitionVO getCompetitionVO(Competition competition);
     /**
-     * 获取脱敏的用户信息
+     * 获取脱敏的比赛信息
      *
      * @param competitionList
      * @return

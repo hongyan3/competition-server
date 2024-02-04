@@ -7,7 +7,6 @@ import com.xiyuan.project.common.ErrorCode;
 import com.xiyuan.project.constant.CommonConstant;
 import com.xiyuan.project.constant.UserConstant;
 import com.xiyuan.project.exception.BusinessException;
-import com.xiyuan.project.mapper.SchoolMapper;
 import com.xiyuan.project.mapper.UserMapper;
 import com.xiyuan.project.model.dto.user.UserLoginRequest;
 import com.xiyuan.project.model.dto.user.UserQueryRequest;
@@ -199,6 +198,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         SchoolVO schoolVO = schoolService.getSchoolVO(school);
         userVO.setSchoolInfo(schoolVO);
         return userVO;
+    }
+
+    @Override
+    public UserVO getUserVO(Long userId) {
+        if (userId == null) {
+            return null;
+        }
+        User user = this.getById(userId);
+        return getUserVO(user);
     }
 
     @Override

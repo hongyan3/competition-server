@@ -1,7 +1,7 @@
 package com.xiyuan.project.mapper;
 
-import com.xiyuan.project.model.entity.Competition;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.xiyuan.project.model.entity.Competition;
 
 /**
 * @author xiyuan

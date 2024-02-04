@@ -1,9 +1,9 @@
 package com.xiyuan.project.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiyuan.project.model.dto.school.SchoolQueryRequest;
 import com.xiyuan.project.model.entity.School;
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiyuan.project.model.vo.SchoolVO;
 
 import java.util.List;

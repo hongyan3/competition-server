@@ -1,28 +1,34 @@
-package com.xiyuan.project.model.vo;
+package com.xiyuan.project.model.dto.entry;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.xiyuan.project.common.PageRequest;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 
- * @TableName 学校标签
+ * 参赛作品
+ * @TableName entry
  */
-@TableName(value ="school")
+@TableName(value ="entry")
 @Data
-public class SchoolVO implements Serializable {
+public class EntryQueryRequest extends PageRequest implements Serializable {
     /**
-     * 学校ID
+     * 作品ID
      */
     private Long id;
 
     /**
-     * 学校名称
+     * 作品名称
      */
-    private String schoolName;
+    private String entryName;
+
+    /**
+     * 创建者ID
+     */
+    private Long creatorId;
 
     /**
      * 创建时间

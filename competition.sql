@@ -27,7 +27,8 @@ CREATE TABLE IF NOT EXISTS `competition`
 (
     `id`               bigint PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT '竞赛ID',
     `competition_name` varchar(100)       NOT NULL COMMENT '竞赛名称',
-    `description`      text               NOT NULL COMMENT '作品描述',
+    `description`      text               NOT NULL COMMENT '竞赛描述',
+    `creator_id`       bigint             NOT NULL COMMENT '创建人ID',
     `organizer`        varchar(100)       NOT NULL COMMENT '主办单位',
     `start_time`       datetime           NOT NULL COMMENT '报名开始时间',
     `end_time`         datetime           NOT NULL COMMENT '报名结束时间',
@@ -38,12 +39,13 @@ CREATE TABLE IF NOT EXISTS `competition`
 
 CREATE TABLE IF NOT EXISTS `entry`
 (
-    `id`             bigint PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT '作品ID',
-    `entry_name`     varchar(100)       NOT NULL COMMENT '作品名称',
-    `description`    text               NOT NULL COMMENT '作品描述',
-    `create_time`    datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `update_time`    datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-    `is_delete`      tinyint(1)         NOT NULL DEFAULT 1 COMMENT '逻辑删除 0-删除 1-正常'
+    `id`          bigint PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT '作品ID',
+    `entry_name`  varchar(100)       NOT NULL COMMENT '作品名称',
+    `description` text               NOT NULL COMMENT '作品描述',
+    `creator_id`  bigint             NOT NULL COMMENT '创建者ID',
+    `create_time` datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `is_delete`   tinyint(1)         NOT NULL DEFAULT 1 COMMENT '逻辑删除 0-删除 1-正常'
 ) COMMENT '参赛作品';
 
 CREATE TABLE IF NOT EXISTS `entry_member`
@@ -57,6 +59,7 @@ CREATE TABLE IF NOT EXISTS `entry_source`
 (
     `id`          bigint PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT '资源ID',
     `entry_id`    bigint             NOT NULL COMMENT '作品ID',
+    `source_name` varchar(30)        NOT NULL COMMENT '资源名称',
     `source_type` varchar(20)        NOT NULL COMMENT '资源类型 image|video|audio|file',
     `source_url`  varchar(256)       NOT NULL COMMENT '资源链接'
 ) COMMENT '作品资源';
