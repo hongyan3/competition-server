@@ -22,7 +22,7 @@ public interface EntryService extends IService<Entry> {
      */
     void validEntry(Entry entry, boolean add);
     /**
-     * 获取脱敏的已登录比赛信息
+     * 获取脱敏的比赛信息
      *
      * @return
      */

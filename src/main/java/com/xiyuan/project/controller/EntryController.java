@@ -10,18 +10,15 @@ import com.xiyuan.project.exception.ThrowUtils;
 import com.xiyuan.project.model.dto.entry.EntryAddRequest;
 import com.xiyuan.project.model.dto.entry.EntryEditRequest;
 import com.xiyuan.project.model.dto.entry.EntryQueryRequest;
+import com.xiyuan.project.model.dto.entrycomment.EntryCommentAddRequest;
+import com.xiyuan.project.model.dto.entrycomment.EntryCommentQueryRequest;
 import com.xiyuan.project.model.dto.entrymember.EntryMemberAddRequest;
 import com.xiyuan.project.model.dto.entrymember.EntryMemberRemoveRequest;
 import com.xiyuan.project.model.dto.entrysource.EntrySourceAddRequest;
-import com.xiyuan.project.model.entity.Entry;
-import com.xiyuan.project.model.entity.EntryMember;
-import com.xiyuan.project.model.entity.EntrySource;
-import com.xiyuan.project.model.entity.User;
+import com.xiyuan.project.model.entity.*;
+import com.xiyuan.project.model.vo.EntryCommentVO;
 import com.xiyuan.project.model.vo.EntryVO;
-import com.xiyuan.project.service.EntryMemberService;
-import com.xiyuan.project.service.EntryService;
-import com.xiyuan.project.service.EntrySourceService;
-import com.xiyuan.project.service.UserService;
+import com.xiyuan.project.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
@@ -45,6 +42,9 @@ public class EntryController {
     EntryMemberService entryMemberService;
     @Resource
     EntrySourceService entrySourceService;
+
+    @Resource
+    EntryCommentService entryCommentService;
     @Resource
     UserService userService;
 
@@ -222,6 +222,56 @@ public class EntryController {
             throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
         }
         entrySourceService.removeEntrySource(sourceId);
+        return ResultUtils.success(true);
+    }
+
+
+    @GetMapping("/comment")
+    public BaseResponse<Page<EntryCommentVO>> getEntryCommentList(@ModelAttribute EntryCommentQueryRequest queryRequest) {
+        if (queryRequest == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        long current = queryRequest.getCurrent();
+        long pageSize = queryRequest.getPageSize();
+        Page<EntryComment> entryCommentPage = entryCommentService.page(new Page<>(current,pageSize), entryCommentService.getQueryWrapper(queryRequest));
+        List<EntryCommentVO> entryCommentVOList = entryCommentService.getEntryCommentVO(entryCommentPage.getRecords());
+        Page<EntryCommentVO> entryCommentVOPage = new Page<>(current,pageSize,entryCommentPage.getTotal());
+        entryCommentVOPage.setRecords(entryCommentVOList);
+        return ResultUtils.success(entryCommentVOPage);
+    }
+    @PostMapping("/comment")
+    public BaseResponse<Boolean> addEntryComment(@RequestBody EntryCommentAddRequest addRequest, HttpServletRequest request) {
+        if (addRequest == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User currentUser = userService.getLoginUser(request);
+        Long entryId = addRequest.getEntryId();
+        Entry entry = entryService.getById(entryId);
+        // 检查作品是否存在
+        if (entry == null) {
+            throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
+        }
+        EntryComment entryComment = new EntryComment();
+        BeanUtils.copyProperties(addRequest,entryComment);
+        entryComment.setUserId(currentUser.getId());
+
+        entryCommentService.validEntryComment(entryComment,true);
+        boolean result = entryCommentService.save(entryComment);
+        ThrowUtils.throwIf(!result,ErrorCode.OPERATION_ERROR);
+        return ResultUtils.success(true);
+    }
+
+    @DeleteMapping("/comment/{commentId}")
+    public BaseResponse<Boolean> removeEntryComment(@PathVariable Long commentId, HttpServletRequest request) {
+        if (commentId == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User currentUser = userService.getLoginUser(request);
+        EntryComment comment = entryCommentService.getById(commentId);
+        if (!comment.getUserId().equals(currentUser.getId())) {
+            throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
+        }
+        entryCommentService.removeById(commentId);
         return ResultUtils.success(true);
     }
 }

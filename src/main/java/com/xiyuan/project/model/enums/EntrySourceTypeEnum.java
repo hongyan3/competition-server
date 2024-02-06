@@ -1,6 +1,7 @@
 package com.xiyuan.project.model.enums;
 
 import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
+import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
  * @description TODO
  * @date 2024/2/5 00:43
  */
+@Getter
 public enum EntrySourceTypeEnum {
     IMAGE("图片","image"),
     VIDEO("视频","video"),
