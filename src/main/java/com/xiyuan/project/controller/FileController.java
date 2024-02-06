@@ -80,10 +80,35 @@ public class FileController {
         }
         switch(fileUploadEnum) {
             case USER_AVATAR:
+            case ENTRY_IMAGE:
                 if (fileSize > 1024 * 1024L) {
                     throw new BusinessException(ErrorCode.PARAMS_ERROR, "文件大小不能超过 1M");
                 }
                 if (!Arrays.asList("jpeg", "jpg", "svg", "png", "webp").contains(fileSuffix)) {
+                    throw new BusinessException(ErrorCode.PARAMS_ERROR, "文件类型错误");
+                }
+                break;
+            case ENTRY_VIDEO:
+                if (fileSize > 1024 * 1024L * 100) {
+                    throw new BusinessException(ErrorCode.PARAMS_ERROR, "文件大小不能超过 100M");
+                }
+                if (!Arrays.asList("mp4", "mkv", "mov").contains(fileSuffix)) {
+                    throw new BusinessException(ErrorCode.PARAMS_ERROR, "文件类型错误");
+                }
+                break;
+            case ENTRY_AUDIO:
+                if (fileSize > 1024 * 1024L * 10) {
+                    throw new BusinessException(ErrorCode.PARAMS_ERROR, "文件大小不能超过 10M");
+                }
+                if (!Arrays.asList("wav", "mp3", "flac","wma").contains(fileSuffix)) {
+                    throw new BusinessException(ErrorCode.PARAMS_ERROR, "文件类型错误");
+                }
+                break;
+            case ENTRY_FILE:
+                if (fileSize > 1024 * 1024L * 10) {
+                    throw new BusinessException(ErrorCode.PARAMS_ERROR, "文件大小不能超过 10M");
+                }
+                if (!Arrays.asList("zip", "rar", "7z","tar").contains(fileSuffix)) {
                     throw new BusinessException(ErrorCode.PARAMS_ERROR, "文件类型错误");
                 }
                 break;
