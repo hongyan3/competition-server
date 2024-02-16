@@ -8,8 +8,11 @@ import com.xiyuan.project.exception.BusinessException;
 import com.xiyuan.project.exception.ThrowUtils;
 import com.xiyuan.project.model.dto.competition.CompetitionAddRequest;
 import com.xiyuan.project.model.dto.competition.CompetitionUpdateRequest;
+import com.xiyuan.project.model.dto.competitionentry.CompetitionEntryUpdateRequest;
 import com.xiyuan.project.model.entity.Competition;
+import com.xiyuan.project.model.entity.CompetitionEntry;
 import com.xiyuan.project.model.enums.UserRoleEnum;
+import com.xiyuan.project.service.CompetitionEntryService;
 import com.xiyuan.project.service.CompetitionService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +29,8 @@ import javax.annotation.Resource;
 public class CompetitionAdminController {
     @Resource
     CompetitionService competitionService;
-
+    @Resource
+    CompetitionEntryService competitionEntryService;
     @PostMapping
     @AuthCheck(AccessRole = UserRoleEnum.ADMIN)
     public BaseResponse<Long> addCompetition(@RequestBody CompetitionAddRequest addRequest) {
@@ -60,6 +64,29 @@ public class CompetitionAdminController {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         boolean result = competitionService.removeById(competitionId);
+        ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
+        return ResultUtils.success(true);
+    }
+
+    @PutMapping("/entry")
+    @AuthCheck(AccessRole = UserRoleEnum.ADMIN)
+    public BaseResponse<Boolean> UpdateCompetitionEntry(@RequestBody CompetitionEntryUpdateRequest updateRequest) {
+        if (updateRequest == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        CompetitionEntry competitionEntry = new CompetitionEntry();
+        BeanUtils.copyProperties(updateRequest,competitionEntry);
+        boolean result = competitionEntryService.updateById(competitionEntry);
+        ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
+        return ResultUtils.success(true);
+    }
+
+    @DeleteMapping("/entry/{competitionEntryId}")
+    public BaseResponse<Boolean> DeleteCompetitionEntry(@PathVariable Long competitionEntryId) {
+        if (competitionEntryId == null || competitionEntryId <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        boolean result = competitionEntryService.removeById(competitionEntryId);
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
         return ResultUtils.success(true);
     }

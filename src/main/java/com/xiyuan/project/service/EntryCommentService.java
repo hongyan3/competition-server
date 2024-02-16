@@ -16,7 +16,7 @@ import java.util.List;
 public interface EntryCommentService extends IService<EntryComment> {
     /**
      * 校验参数
-     * @param entry
+     * @param entryComment
      * @param add
      */
     void validEntryComment(EntryComment entryComment, boolean add);

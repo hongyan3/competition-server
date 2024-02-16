@@ -76,3 +76,15 @@ CREATE TABLE IF NOT EXISTS `entry_comment`
     `update_time`  datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `is_delete`    tinyint(1)         NOT NULL DEFAULT 1 COMMENT '逻辑删除 0-删除 1-正常'
 ) COMMENT '作品评论';
+
+CREATE TABLE IF NOT EXISTS `competition_entry`
+(
+    `id`               bigint PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    `competition_id`   bigint             NOT NULL COMMENT '竞赛ID',
+    `entry_id`         bigint             NOT NULL COMMENT '作品ID',
+    `captain_id`       bigint             NOT NULL COMMENT '项目队长ID',
+    `competition_rank` tinyint(1)         NOT NULL DEFAULT 0 COMMENT '0-未获奖 1-三等奖 2-二等奖 3-一等奖',
+    `create_time`      datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time`      datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `is_delete`        tinyint(1)         NOT NULL DEFAULT 1 COMMENT '逻辑删除 0-删除 1-正常'
+) COMMENT '参赛-作品关系表';
