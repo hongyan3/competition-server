@@ -108,7 +108,7 @@ public class FileController {
                 if (fileSize > 1024 * 1024L * 10) {
                     throw new BusinessException(ErrorCode.PARAMS_ERROR, "文件大小不能超过 10M");
                 }
-                if (!Arrays.asList("zip", "rar", "7z","tar").contains(fileSuffix)) {
+                if (!Arrays.asList("zip", "rar", "7z","tar","pdf","doc","docx","ppt","xls","xlsx").contains(fileSuffix)) {
                     throw new BusinessException(ErrorCode.PARAMS_ERROR, "文件类型错误");
                 }
                 break;

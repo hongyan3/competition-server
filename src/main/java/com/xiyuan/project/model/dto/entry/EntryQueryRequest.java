@@ -26,6 +26,11 @@ public class EntryQueryRequest extends PageRequest implements Serializable {
     private String entryName;
 
     /**
+     * 作品描述
+     */
+    private String description;
+
+    /**
      * 创建者ID
      */
     private Long creatorId;

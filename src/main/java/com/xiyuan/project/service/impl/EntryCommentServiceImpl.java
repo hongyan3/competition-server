@@ -56,7 +56,9 @@ public class EntryCommentServiceImpl extends ServiceImpl<EntryCommentMapper, Ent
         if (entryId == null || entryId <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        if (commentType != null && replyId == null) {
+        if (commentType == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        } else if (commentType == 2 && replyId == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
     }

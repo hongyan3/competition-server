@@ -138,6 +138,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         if (school == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "所选择学校不存在");
         }
+        // 学校不一致
+        if (!schoolId.equals(user.getSchoolId())) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR,"所选学校错误");
+        }
         // 3. 记录用户的登录态
         request.getSession().setAttribute(UserConstant.USER_LOGIN_STATE, user);
         return this.getUserVO(user);
