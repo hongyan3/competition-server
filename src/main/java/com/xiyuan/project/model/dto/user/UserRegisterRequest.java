@@ -7,8 +7,6 @@ import java.io.Serializable;
 @Data
 public class UserRegisterRequest implements Serializable {
 
-    private Long schoolId;
-
     private String userAccount;
 
     private String userName;

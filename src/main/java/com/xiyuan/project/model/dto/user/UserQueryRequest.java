@@ -31,11 +31,6 @@ public class UserQueryRequest extends PageRequest implements Serializable {
     private String userAccount;
 
     /**
-     *  学校ID
-     */
-    private Long schoolId;
-
-    /**
      * 性别 1-男 2-女 3-保密
      */
     private Integer gender;

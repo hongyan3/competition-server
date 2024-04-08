@@ -40,11 +40,6 @@ public class User implements Serializable {
     private Integer gender;
 
     /**
-     *  学校ID
-     */
-    private Long schoolId;
-
-    /**
      * 密码
      */
     private String password;

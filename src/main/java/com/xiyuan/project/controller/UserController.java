@@ -12,13 +12,10 @@ import com.xiyuan.project.model.dto.user.UserEditRequest;
 import com.xiyuan.project.model.dto.user.UserLoginRequest;
 import com.xiyuan.project.model.dto.user.UserQueryRequest;
 import com.xiyuan.project.model.dto.user.UserRegisterRequest;
-import com.xiyuan.project.model.entity.CompetitionEntry;
 import com.xiyuan.project.model.entity.Entry;
 import com.xiyuan.project.model.entity.User;
-import com.xiyuan.project.model.vo.CompetitionEntryVO;
 import com.xiyuan.project.model.vo.EntryVO;
 import com.xiyuan.project.model.vo.UserVO;
-import com.xiyuan.project.service.CompetitionEntryService;
 import com.xiyuan.project.service.EntryService;
 import com.xiyuan.project.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -41,8 +38,6 @@ public class UserController {
     private UserService userService;
     @Resource
     private EntryService entryService;
-    @Resource
-    private CompetitionEntryService competitionEntryService;
 
     /**
      * 用户注册
@@ -164,22 +159,6 @@ public class UserController {
                 queryWrapper);
         List<EntryVO> entryVOList = entryService.getEntryVO(entryPage.getRecords());
         Page<EntryVO> voPage = new Page<>(current, size, entryPage.getTotal());
-        voPage.setRecords(entryVOList);
-        return ResultUtils.success(voPage);
-    }
-
-    @GetMapping("/competition")
-    public BaseResponse<Page<CompetitionEntryVO>> getUserCompetitionList(HttpServletRequest request, PageRequest pageRequest) {
-        User currentUser = userService.getLoginUser(request);
-        long current = pageRequest.getCurrent();
-        long size = pageRequest.getPageSize();
-        ThrowUtils.throwIf(size > 50, ErrorCode.PARAMS_ERROR);
-        QueryWrapper<CompetitionEntry> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("captain_id", currentUser.getId());
-        Page<CompetitionEntry> competitionEntryPage = competitionEntryService.page(new Page<>(current, size),
-                queryWrapper);
-        List<CompetitionEntryVO> entryVOList = competitionEntryService.getCompetitionEntryVO(competitionEntryPage.getRecords());
-        Page<CompetitionEntryVO> voPage = new Page<>(current, size, competitionEntryPage.getTotal());
         voPage.setRecords(entryVOList);
         return ResultUtils.success(voPage);
     }

@@ -24,6 +24,10 @@ public class EntryAddRequest implements Serializable {
      */
     private String description;
 
+    /**
+     * 参赛学院
+     */
+    private String college;
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

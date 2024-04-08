@@ -101,7 +101,7 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>com.xiyuan.project.MainApplication</mainClass>
-                    <skip>true</skip>
+                    <addResources>true</addResources>
                 </configuration>
                 <executions>
                     <execution>

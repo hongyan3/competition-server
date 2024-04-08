@@ -11,12 +11,9 @@ import com.xiyuan.project.mapper.UserMapper;
 import com.xiyuan.project.model.dto.user.UserLoginRequest;
 import com.xiyuan.project.model.dto.user.UserQueryRequest;
 import com.xiyuan.project.model.dto.user.UserRegisterRequest;
-import com.xiyuan.project.model.entity.School;
 import com.xiyuan.project.model.entity.User;
 import com.xiyuan.project.model.enums.UserRoleEnum;
-import com.xiyuan.project.model.vo.SchoolVO;
 import com.xiyuan.project.model.vo.UserVO;
-import com.xiyuan.project.service.SchoolService;
 import com.xiyuan.project.service.UserService;
 import com.xiyuan.project.utils.SqlUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -45,8 +42,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
      * 盐值，混淆密码
      */
     private static final String SALT = "xiyuan";
-    @Resource
-    SchoolService schoolService;
 
     @Override
     public long userRegister(UserRegisterRequest registerRequest) {
@@ -55,7 +50,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         String userName = registerRequest.getUserName();
         String userPassword = registerRequest.getUserPassword();
         String checkPassword = registerRequest.getCheckPassword();
-        Long schoolId = registerRequest.getSchoolId();
 
         // 1. 校验
         if (StringUtils.isAnyBlank(userAccount, userName, userPassword, checkPassword)) {
@@ -67,9 +61,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         if (userPassword.length() < 8 || checkPassword.length() < 8) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "用户密码过短");
         }
-        if (schoolId == null) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR, "学校不能为空");
-        }
         // 密码和校验密码相同
         if (!userPassword.equals(checkPassword)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "两次输入的密码不一致");
@@ -79,12 +70,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             QueryWrapper<User> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("user_account", userAccount);
             long count = this.baseMapper.selectCount(queryWrapper);
-            School school = schoolService.getById(schoolId);
             if (count > 0) {
                 throw new BusinessException(ErrorCode.PARAMS_ERROR, "账号重复");
-            }
-            if (school == null) {
-                throw new BusinessException(ErrorCode.PARAMS_ERROR, "注册的学校不存在");
             }
             // 2. 加密
             String encryptPassword = EncryptPassword(userPassword);
@@ -93,7 +80,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             user.setUserAccount(userAccount);
             user.setPassword(encryptPassword);
             user.setUserName(userName);
-            user.setSchoolId(schoolId);
             boolean saveResult = this.save(user);
             if (!saveResult) {
                 throw new BusinessException(ErrorCode.SYSTEM_ERROR, "注册失败，数据库错误");
@@ -104,16 +90,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
     @Override
     public UserVO userLogin(UserLoginRequest loginRequest, HttpServletRequest request) {
-        Long schoolId = loginRequest.getSchoolId();
         String userAccount = loginRequest.getUserAccount();
         String userPassword = loginRequest.getUserPassword();
 
         // 1. 校验
         if (StringUtils.isAnyBlank(userAccount, userPassword)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "参数为空");
-        }
-        if (schoolId == null) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR, "学校错误");
         }
         if (userAccount.length() < 4) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "账号错误");
@@ -128,19 +110,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         queryWrapper.eq("user_account", userAccount);
         queryWrapper.eq("password", encryptPassword);
         User user = this.baseMapper.selectOne(queryWrapper);
-        School school = schoolService.getById(schoolId);
         // 用户不存在
         if (user == null) {
             log.info("user login failed, userAccount cannot match userPassword");
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "用户不存在或密码错误");
-        }
-        // 学校不存在
-        if (school == null) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR, "所选择学校不存在");
-        }
-        // 学校不一致
-        if (!schoolId.equals(user.getSchoolId())) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR,"所选学校错误");
         }
         // 3. 记录用户的登录态
         request.getSession().setAttribute(UserConstant.USER_LOGIN_STATE, user);
@@ -198,9 +171,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         }
         UserVO userVO = new UserVO();
         BeanUtils.copyProperties(user, userVO);
-        School school = schoolService.getById(user.getSchoolId());
-        SchoolVO schoolVO = schoolService.getSchoolVO(school);
-        userVO.setSchoolInfo(schoolVO);
         return userVO;
     }
 

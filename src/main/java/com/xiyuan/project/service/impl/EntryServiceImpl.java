@@ -95,13 +95,18 @@ public class EntryServiceImpl extends ServiceImpl<EntryMapper, Entry>
         Long creatorId = entryQueryRequest.getCreatorId();
         String entryName = entryQueryRequest.getEntryName();
         String description = entryQueryRequest.getDescription();
+        String college = entryQueryRequest.getCollege();
         String sortField = entryQueryRequest.getSortField();
         String sortOrder = entryQueryRequest.getSortOrder();
         // 拼接查询条件
         QueryWrapper<Entry> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq(creatorId != null, "creator_id", id);
         queryWrapper.eq(id != null, "id", id);
-        queryWrapper.like(StringUtils.isNotBlank(entryName), "entry_name", entryName).or().like(StringUtils.isNotBlank(description), "description", description);
+        queryWrapper.like(StringUtils.isNotBlank(entryName), "entry_name", entryName)
+                .or()
+                .like(StringUtils.isNotBlank(description), "description", description)
+                .or()
+                .like(StringUtils.isNotBlank(college), "college", college);
         queryWrapper.orderBy(SqlUtils.validSortField(sortField), sortOrder.equals(CommonConstant.SORT_ORDER_ASC),
                 sortField);
         return queryWrapper;

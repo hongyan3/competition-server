@@ -31,6 +31,11 @@ public class EntryQueryRequest extends PageRequest implements Serializable {
     private String description;
 
     /**
+     * 参赛学院
+     */
+    private String college;
+
+    /**
      * 创建者ID
      */
     private Long creatorId;

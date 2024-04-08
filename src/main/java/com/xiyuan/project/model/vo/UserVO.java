@@ -46,11 +46,6 @@ public class UserVO implements Serializable {
     private Integer role;
 
     /**
-     *  学校信息
-     */
-    private SchoolVO SchoolInfo;
-
-    /**
      * 用户状态 1-正常 2-禁用
      */
     private Integer status;

@@ -32,6 +32,11 @@ public class EntryVO implements Serializable {
     private String description;
 
     /**
+     * 参赛学院
+     */
+    private String college;
+
+    /**
      * 创建者信息
      */
     private UserVO creatorInfo;
