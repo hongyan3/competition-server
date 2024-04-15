@@ -119,7 +119,7 @@ public class EntryController {
     public BaseResponse<Boolean> removeEntry(@PathVariable Long entryId, HttpServletRequest request) {
         User currentUser = userService.getLoginUser(request);
         Entry currentEntry = entryService.getById(entryId);
-        if (currentEntry == null || !currentEntry.getId().equals(currentUser.getId())) {
+        if (currentEntry == null || !currentEntry.getCreatorId().equals(currentUser.getId())) {
             throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
         }
         boolean result = entryService.removeById(entryId);
