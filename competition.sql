@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `user`
     `password`     varchar(256)       NOT NULL COMMENT '密码',
     `user_avatar`  varchar(256)                DEFAULT NULL COMMENT '用户头像',
     `gender`       tinyint(1)                  DEFAULT NULL COMMENT '性别 1-男 2-女 3-保密',
-    `role`         tinyint(1)         NOT NULL DEFAULT '1' COMMENT '角色 1-普通用户 2-管理员',
+        `role`         tinyint(1)         NOT NULL DEFAULT '1' COMMENT '角色 1-普通用户 2-管理员',
     `status`       tinyint(1)         NOT NULL DEFAULT '1' COMMENT '用户状态 0-禁用 1-正常',
     `create_time`  datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time`  datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `entry_comment`
     `entry_id`     bigint             NOT NULL COMMENT '作品ID',
     `user_id`      bigint             NOT NULL COMMENT '评论人ID',
     `comment_type` tinyint            NOT NULL DEFAULT 1 COMMENT '评论类型 1-评论 2-回复',
-    `reply_id`     bigint COMMENT '回复的评论ID',
+        `reply_id`     bigint COMMENT '回复的评论ID',
     `create_time`  datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time`  datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `is_delete`    tinyint(1)         NOT NULL DEFAULT 1 COMMENT '逻辑删除 0-删除 1-正常'
