@@ -1,0 +1,95 @@
+page {
+  height: 100%;
+  width: 100%;
+  background-color: #4e7ca1;
+}
+.head{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 30%;
+  background-color: #4e7ca1;
+}
+.head image {
+  width: 70%;
+  height: 80rpx;
+}
+.body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 70%;
+  background-color: #fdfdfb;
+  border-radius: 30rpx 30rpx 0rpx 0rpx;
+}
+.avatar {
+  width: 150rpx;
+  height: 150rpx;
+  border: 6rpx solid #fbfbfd;
+  border-radius: 50%;
+  position: absolute;
+  top: -75rpx;
+  left: 50rpx;
+}
+.holder {
+  width: 100%;
+  height: 100rpx;
+}
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 85%;
+  height: 100rpx;
+}
+.detail {
+  display: flex;
+  align-items: center;
+  width: 85%;
+  height: 150rpx;
+  border-bottom: 1rpx solid #efefef;
+}
+.detail-item {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.detail-item:nth-child(1) {
+  margin-right: 100rpx;
+}
+.funcation {
+  width: 85%;
+  height: 360rpx;
+}
+.funcation-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 30%;
+  border-bottom: 1rpx solid #efefef;
+}
+.funcation-item:nth-child(3) {
+  border: none;
+}
+.funcation-item text {
+  font-size: 30rpx;
+  color: #2e4467;
+  font-weight: 500;
+  margin-left: 25rpx;
+}
+.funcation-item:active {
+  background-color: #ececec;
+}
+.logout-button {
+  background-color: #4e7ca1; 
+  color: #fdfdfb; 
+  margin-top: 30rpx;
+}
+.logout-button:active {
+  background-color: #446c8d;
+}

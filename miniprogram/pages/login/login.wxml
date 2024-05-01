@@ -1,0 +1,11 @@
+<view class="header">
+  <image src="/assets/bg.jpg" mode="" />
+</view>
+<view class="login-form">
+  <t-input label="账号" placeholder="请输入账号" bind:change="userAccountChange" />
+  <t-input label="密码" type="password" placeholder="请输入密码" bind:change="userPasswordChange" />
+  <view class="button-area">
+    <t-button theme="primary" style="width: 250rpx;" size="medium" bind:tap="login">登录</t-button>
+  </view>
+</view>
+<t-message id="t-message" />

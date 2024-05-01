@@ -1,0 +1,105 @@
+<t-tabs defaultValue="{{0}}">
+  <!-- 作品描述栏 -->
+  <t-tab-panel label="作品描述" value="0" style="{{tabPanelstyle}}">
+    <view class="entry-container">
+      <t-cell title="作品ID" hover note="{{entry.id}}" />
+      <t-cell title="作品名称" hover note="{{entry.entryName}}" />
+      <t-cell title="作品描述" hover description="{{entry.description}}" />
+      <t-cell title="创建人" hover>
+        <t-avatar slot="note" shape="round" size="small" image="{{entry.creatorInfo.userAvatar}}" />
+        <text slot="note" style="margin-left: 10rpx;font-size: 32rpx;">{{entry.creatorInfo.userName}}</text>
+      </t-cell>
+      <t-cell title="学院" hover note="{{entry.college}}" />
+      <t-cell title="创建时间" hover note="{{entry.createTime}}" />
+    </view>
+  </t-tab-panel>
+  <!-- 作品附件栏 -->
+  <t-tab-panel label="作品附件" value="1" style="{{tabPanelstyle}}">
+    <view class="entry-container">
+      <!-- image -->
+      <view class="source-list" wx:for="{{sources.imageList}}" wx:key="id" wx:for-item="image">
+        <view class="card-title">
+          <text>{{image.sourceName}}</text>
+        </view>
+        <view class="card-file">
+          <image src="{{image.sourceUrl}}" mode="" />
+        </view>
+      </view>
+      <!-- video -->
+      <view class="source-list" wx:for="{{sources.videoList}}" wx:key="id" wx:for-item="video">
+        <view class="card-title">
+          <text>{{video.sourceName}}</text>
+        </view>
+        <view class="card-file">
+          <video src="{{video.sourceUrl}}" controls></video>
+        </view>
+      </view>
+      <!-- audio -->
+      <view class="source-list" wx:for="{{sources.audioList}}" wx:key="id" wx:for-item="audio">
+        <view class="card-title">
+          <text>{{audio.sourceName}}</text>
+        </view>
+        <view class="card-file">
+          <audio src="{{audio.sourceUrl}}" controls name="{{audio.sourceName}}" author="{{entry.creatorInfo.userName}}"></audio>
+        </view>
+      </view>
+      <!-- file -->
+      <view class="source-list">
+        <view class="card-title">
+          <text>其他文件列表</text>
+        </view>
+        <view class="card-file" wx:for="{{sources.fileList}}" wx:key="id" wx:for-item="file">
+          <t-link size="small" theme="primary" content="{{file.sourceName}}" prefixIcon="file" data-url="{{file.sourceUrl}}" hover underline bind:tap="downloadFile" />
+        </view>
+      </view>
+    </view>
+  </t-tab-panel>
+  <!-- 作品成员栏 -->
+  <t-tab-panel label="作品成员" value="2" style="{{tabPanelstyle}}">
+    <view class="entry-container">
+      <view class="member-list" wx:for="{{entry.members}}" wx:key="id" wx:for-item="member">
+        <view class="avatar">
+          <t-avatar shape="round" image="{{member.userAvatar}}" />
+        </view>
+        <view class="info">
+          <text id="user-name">{{member.userName}}</text>
+          <t-tag class="tag" variant="light" theme="primary">{{member.gender == 1?'男':'女'}}</t-tag>
+        </view>
+      </view>
+    </view>
+  </t-tab-panel>
+  <!-- 评论栏 -->
+  <t-tab-panel label="评论" value="4" style="{{tabPanelstyle}}">
+    <t-fab icon="tips" bind:click="showComment" aria-label="增加"></t-fab>
+    <view class="entry-container">
+      <view class="source-list" wx:for="{{commentList}}" wx:key="id" wx:for-item="comment">
+        <view class="card-avatar">
+          <view class="avatar">
+            <t-avatar shape="round" size="small" image="{{comment.userInfo.userAvatar}}" />
+          </view>
+          <view class="nickName">
+            <text>{{comment.userInfo.userName}}</text>
+            <text>{{comment.createTime}}</text>
+          </view>
+        </view>
+        <view class="card-content" bind:tap="showComment" data-comment_id="{{comment.id}}">
+          <view class="reply-comment" wx:if="{{comment.commentType == 2}}">
+            <text>{{comment.replyComment.content}}</text>
+          </view>
+          <view class="content">
+            <text>{{comment.content}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </t-tab-panel>
+</t-tabs>
+<!-- 弹窗 -->
+<view class="comment-input" wx:if="{{commentVisiable}}" style="bottom: {{bottom}}px;">
+  <view class="input-area">
+    <input type="text" bindfocus="onbindfocus" bindblur="onbindblur" focus="{{true}}" adjust-position="{{false}}" confirm-type="send" value="{{comment_form.content}}" bindinput="changeContent" maxlength="120" />
+  </view>
+  <t-button theme="primary" size="medium" bindtap="submitComment">发送</t-button>
+</view>
+<view class="mask" wx:if="{{commentVisiable}}" bindtap="closeMask"></view>
+<t-message id="t-message" />

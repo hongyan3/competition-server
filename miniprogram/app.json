@@ -1,0 +1,76 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/home/home",
+    "pages/login/login",
+    "pages/updateUser/updateUser",
+    "pages/entry/entry"
+  ],
+  "usingComponents": {
+    "t-button": "tdesign-miniprogram/button/button",
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-radio": "tdesign-miniprogram/radio/radio",
+    "t-message": "tdesign-miniprogram/message/message",
+    "t-image": "tdesign-miniprogram/image/image",
+    "t-avatar": "tdesign-miniprogram/avatar/avatar",
+    "t-avatar-group": "tdesign-miniprogram/avatar-group/avatar-group",
+    "t-input": "tdesign-miniprogram/input/input",
+    "t-picker": "tdesign-miniprogram/picker/picker",
+    "t-picker-item": "tdesign-miniprogram/picker-item/picker-item",
+    "t-textarea": "tdesign-miniprogram/textarea/textarea",
+    "t-cell-group": "tdesign-miniprogram/cell-group/cell-group",
+    "t-cell": "tdesign-miniprogram/cell/cell",
+    "t-dialog": "tdesign-miniprogram/dialog/dialog",
+    "t-cascader": "tdesign-miniprogram/cascader/cascader",
+    "t-grid": "tdesign-miniprogram/grid/grid",
+    "t-grid-item": "tdesign-miniprogram/grid-item/grid-item",
+    "t-navbar": "tdesign-miniprogram/navbar/navbar",
+    "t-search": "tdesign-miniprogram/search/search",
+    "t-back-top": "tdesign-miniprogram/back-top/back-top",
+    "t-fab": "tdesign-miniprogram/fab/fab",
+    "t-loading": "tdesign-miniprogram/loading/loading",
+    "t-upload": "tdesign-miniprogram/upload/upload",
+    "t-indexes": "tdesign-miniprogram/indexes/indexes",
+    "t-indexes-anchor": "tdesign-miniprogram/indexes-anchor/indexes-anchor",
+    "t-tabs": "tdesign-miniprogram/tabs/tabs",
+    "t-tab-panel": "tdesign-miniprogram/tab-panel/tab-panel",
+    "t-dropdown-menu": "tdesign-miniprogram/dropdown-menu/dropdown-menu",
+    "t-dropdown-item": "tdesign-miniprogram/dropdown-item/dropdown-item",
+    "t-divider": "tdesign-miniprogram/divider/divider",
+    "t-tag": "tdesign-miniprogram/tag/tag",
+    "t-check-tag": "tdesign-miniprogram/check-tag/check-tag",
+    "t-link": "tdesign-miniprogram/link/link",
+    "t-empty": "tdesign-miniprogram/empty/empty"
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#f6f6f6",
+    "backgroundColor": "#f6f6f6",
+    "navigationBarTitleText": "Competition",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "selectedColor": "#2f72f9",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "/assets/index.png",
+        "selectedIconPath": "/assets/index-selected.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "/assets/home.png",
+        "selectedIconPath": "/assets/home-selected.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "resolveAlias": {
+    "~/*": "/*",
+    "@utils/*": "utils/*",
+    "@components/*": "components/*",
+    "@assets/*": "assets/*"
+  }
+}

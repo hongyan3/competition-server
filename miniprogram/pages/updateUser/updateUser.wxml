@@ -1,0 +1,14 @@
+<view class="update-form">
+  <t-cell class="mb-16" title="选择性别" note="{{genderText}}" arrow hover bind:click="onGenderPicker" />
+  <t-picker visible="{{genderVisible}}" value="{{defaultGender}}" data-key="id" title="选择性别" cancelBtn="取消" confirmBtn="确认" bindconfirm="onPickerConfirm">
+    <t-picker-item options="{{genderList}}" />
+  </t-picker>
+  <!--  -->
+  <t-upload disabled mediaType="{{['image']}}" max="{{1}}" files="{{fileList}}" bind:add="handleAdd" bind:remove="handleRemove">
+  </t-upload>
+  <!--  -->
+  <view class="button-area">
+    <t-button theme="primary" style="width: 250rpx;" size="medium" bind:tap="submit">提交</t-button>
+  </view>
+</view>
+<t-message id="t-message" />
