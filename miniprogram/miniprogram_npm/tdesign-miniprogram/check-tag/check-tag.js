@@ -1,14 +1,16 @@
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { wxComponent, SuperComponent } from '../common/src/index';
+import {wxComponent, SuperComponent} from '../common/src/index';
 import config from '../common/config';
 import props from './props';
-import { classNames, calcIcon } from '../common/utils';
-const { prefix } = config;
+import {classNames, calcIcon} from '../common/utils';
+
+const {prefix} = config;
 const name = `${prefix}-tag`;
 let CheckTag = class CheckTag extends SuperComponent {
     constructor() {
@@ -46,8 +48,8 @@ let CheckTag = class CheckTag extends SuperComponent {
         };
         this.methods = {
             setClass() {
-                const { classPrefix } = this.data;
-                const { size, variant, disabled, checked } = this.properties;
+                const {classPrefix} = this.data;
+                const {size, variant, disabled, checked} = this.properties;
                 const tagClass = [
                     classPrefix,
                     `${classPrefix}--checkable`,
@@ -65,9 +67,9 @@ let CheckTag = class CheckTag extends SuperComponent {
             onClick() {
                 if (this.data.disabled)
                     return;
-                const { checked } = this.data;
+                const {checked} = this.data;
                 this._trigger('click');
-                this._trigger('change', { checked: !checked });
+                this._trigger('change', {checked: !checked});
             },
         };
     }

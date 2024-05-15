@@ -1,7 +1,9 @@
-import { SuperComponent, RelationsOptions } from '../common/src/index';
-import type { TdCollapsePanelProps } from './type';
+import {SuperComponent, RelationsOptions} from '../common/src/index';
+import type {TdCollapsePanelProps} from './type';
+
 export interface CollapsePanelProps extends TdCollapsePanelProps {
 }
+
 export default class CollapsePanel extends SuperComponent {
     externalClasses: string[];
     options: {

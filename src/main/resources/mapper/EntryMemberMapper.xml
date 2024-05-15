@@ -5,9 +5,9 @@
 <mapper namespace="com.xiyuan.project.mapper.EntryMemberMapper">
 
     <resultMap id="BaseResultMap" type="com.xiyuan.project.model.entity.EntryMember">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="entryId" column="entry_id" jdbcType="BIGINT"/>
-            <result property="memberId" column="member_id" jdbcType="BIGINT"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="entryId" column="entry_id" jdbcType="BIGINT"/>
+        <result property="memberId" column="member_id" jdbcType="BIGINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">

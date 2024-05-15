@@ -1,4 +1,5 @@
-import { SizeEnum } from '../common/common';
+import {SizeEnum} from '../common/common';
+
 export interface TdTagProps {
     closable?: {
         type: BooleanConstructor;

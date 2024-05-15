@@ -1,13 +1,15 @@
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { SuperComponent, wxComponent } from '../common/src/index';
+import {SuperComponent, wxComponent} from '../common/src/index';
 import config from '../common/config';
 import props from './props';
-const { prefix } = config;
+
+const {prefix} = config;
 const name = `${prefix}-stepper`;
 let Stepper = class Stepper extends SuperComponent {
     constructor() {
@@ -36,15 +38,17 @@ let Stepper = class Stepper extends SuperComponent {
             prefix,
         };
     }
+
     attached() {
-        const { value, min } = this.properties;
+        const {value, min} = this.properties;
         this.setData({
             currentValue: value ? Number(value) : min,
         });
     }
+
     isDisabled(type) {
-        const { min, max, disabled } = this.properties;
-        const { currentValue } = this.data;
+        const {min, max, disabled} = this.properties;
+        const {currentValue} = this.data;
         if (disabled) {
             return true;
         }
@@ -56,29 +60,34 @@ let Stepper = class Stepper extends SuperComponent {
         }
         return false;
     }
+
     format(value) {
-        const { min, max } = this.properties;
+        const {min, max} = this.properties;
         return Math.max(Math.min(max, value, Number.MAX_SAFE_INTEGER), min, Number.MIN_SAFE_INTEGER);
     }
+
     setValue(value) {
-        this._trigger('change', { value });
+        this._trigger('change', {value});
     }
+
     minusValue() {
         if (this.isDisabled('minus')) {
-            this.triggerEvent('overlimit', { type: 'minus' });
+            this.triggerEvent('overlimit', {type: 'minus'});
             return false;
         }
-        const { currentValue, step } = this.data;
+        const {currentValue, step} = this.data;
         this.setValue(this.format(currentValue - step));
     }
+
     plusValue() {
         if (this.isDisabled('plus')) {
-            this.triggerEvent('overlimit', { type: 'plus' });
+            this.triggerEvent('overlimit', {type: 'plus'});
             return false;
         }
-        const { currentValue, step } = this.data;
+        const {currentValue, step} = this.data;
         this.setValue(this.format(currentValue + step));
     }
+
     changeValue(e) {
         const value = String(e.detail.value)
             .split('.')[0]
@@ -86,17 +95,20 @@ let Stepper = class Stepper extends SuperComponent {
         this.setValue(this.format(Number(value)));
         return value;
     }
+
     focusHandle(e) {
         const value = this.changeValue(e);
-        this.triggerEvent('focus', { value });
+        this.triggerEvent('focus', {value});
     }
+
     inputHandle(e) {
         const value = this.changeValue(e);
-        this.triggerEvent('input', { value });
+        this.triggerEvent('input', {value});
     }
+
     blurHandle(e) {
         const value = this.changeValue(e);
-        this.triggerEvent('blur', { value });
+        this.triggerEvent('blur', {value});
     }
 };
 Stepper = __decorate([

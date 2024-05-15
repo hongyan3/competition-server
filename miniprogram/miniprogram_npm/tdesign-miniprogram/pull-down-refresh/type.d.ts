@@ -1,4 +1,5 @@
-import { LoadingProps } from '../loading/index';
+import {LoadingProps} from '../loading/index';
+
 export interface TdPullDownRefreshProps {
     style?: {
         type: StringConstructor;

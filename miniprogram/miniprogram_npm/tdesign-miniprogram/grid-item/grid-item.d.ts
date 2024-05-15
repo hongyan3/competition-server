@@ -1,4 +1,5 @@
-import { SuperComponent, RelationsOptions } from '../common/src/index';
+import {SuperComponent, RelationsOptions} from '../common/src/index';
+
 export default class GridItem extends SuperComponent {
     externalClasses: string[];
     options: {
@@ -22,10 +23,16 @@ export default class GridItem extends SuperComponent {
     lifetimes: {
         ready(): void;
     };
+
     updateStyle(): void;
+
     getWidthStyle(): string;
+
     getPaddingStyle(): string;
+
     getBorderStyle(): string;
+
     onClick(e: any): void;
+
     jumpLink(): void;
 }

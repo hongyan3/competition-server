@@ -32,4 +32,5 @@ export interface TdSwiperNavProps {
         value?: SwiperNavigationType;
     };
 }
+
 export declare type SwiperNavigationType = 'dots' | 'dots-bar' | 'fraction';

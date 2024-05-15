@@ -8,15 +8,19 @@
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="entryName" column="entry_name" jdbcType="VARCHAR"/>
         <result property="description" column="description" jdbcType="VARCHAR"/>
-        <result property="college" column="college" jdbcType="VARCHAR"/>
+        <result property="collegeId" column="college_id" jdbcType="BIGINT"/>
         <result property="creatorId" column="creator_id" jdbcType="BIGINT"/>
+        <result property="status" column="status" jdbcType="TINYINT"/>
+        <result property="statusRemarks" column="status_remarks" jdbcType="VARCHAR"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
         <result property="isDelete" column="is_delete" jdbcType="TINYINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,entry_name,description,college,creator_id,
-        create_time,update_time,is_delete
+        id,entry_name,description,
+        college_id,creator_id,status,
+        status_remarks,create_time,update_time,
+        is_delete
     </sql>
 </mapper>

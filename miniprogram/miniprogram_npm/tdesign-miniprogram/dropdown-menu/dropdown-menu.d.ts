@@ -1,7 +1,9 @@
-import { RelationsOptions, SuperComponent } from '../common/src/index';
-import type { TdDropdownMenuProps } from './type';
+import {RelationsOptions, SuperComponent} from '../common/src/index';
+import type {TdDropdownMenuProps} from './type';
+
 export interface DropdownMenuProps extends TdDropdownMenuProps {
 }
+
 export default class DropdownMenu extends SuperComponent {
     externalClasses: string[];
     properties: TdDropdownMenuProps;

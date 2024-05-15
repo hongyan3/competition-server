@@ -2,8 +2,9 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { EntrySource } from './EntrySource';
-import type { UserVO } from './UserVO';
+import type {EntrySource} from './EntrySource';
+import type {UserVO} from './UserVO';
+
 export type EntryVO = {
     college?: string;
     createTime?: string;

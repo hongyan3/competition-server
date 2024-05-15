@@ -1,3 +1,4 @@
-import { TdNoticeBarProps } from './type';
+import {TdNoticeBarProps} from './type';
+
 declare const props: TdNoticeBarProps;
 export default props;

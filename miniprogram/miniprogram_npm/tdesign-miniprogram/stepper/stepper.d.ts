@@ -1,4 +1,5 @@
-import { SuperComponent } from '../common/src/index';
+import {SuperComponent} from '../common/src/index';
+
 export default class Stepper extends SuperComponent {
     externalClasses: string[];
     options: {
@@ -68,14 +69,24 @@ export default class Stepper extends SuperComponent {
         classPrefix: string;
         prefix: string;
     };
+
     attached(): void;
+
     isDisabled(type: any): boolean;
+
     format(value: any): number;
+
     setValue(value: any): void;
+
     minusValue(): boolean;
+
     plusValue(): boolean;
+
     changeValue(e: any): string | 0;
+
     focusHandle(e: any): void;
+
     inputHandle(e: any): void;
+
     blurHandle(e: any): void;
 }

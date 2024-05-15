@@ -4,21 +4,21 @@
     <div class="form">
       <a-form :model="form" :style="{ width: '600px' }" @submit="handleLogin">
         <a-form-item field="name" label="用户名">
-          <a-input v-model="form.userAccount" placeholder="请输入用户命" :style="{ width: '250px' }" />
+          <a-input v-model="form.userAccount" :style="{ width: '250px' }" placeholder="请输入用户命"/>
         </a-form-item>
         <a-form-item field="post" label="密码">
-          <a-input type="password" v-model="form.userPassword" placeholder="请输入密码" :style="{ width: '250px' }" />
+          <a-input v-model="form.userPassword" :style="{ width: '250px' }" placeholder="请输入密码" type="password"/>
         </a-form-item>
         <a-form-item>
           <a-button html-type="submit" type="primary">登录</a-button>
-          <RouterLink to="/register" class="register-tip">还没有账号？去注册</RouterLink>
+          <RouterLink class="register-tip" to="/register">还没有账号？去注册</RouterLink>
         </a-form-item>
       </a-form>
     </div>
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .login-form {
   width: 700px;
   height: 400px;
@@ -29,6 +29,7 @@
   flex-direction: column;
   justify-content: center;
   border-radius: 5px;
+
   .title {
     width: 100%;
     height: 20%;
@@ -40,6 +41,7 @@
     padding-left: 30px;
     border-radius: 5px;
   }
+
   .form {
     width: 100%;
     height: 80%;
@@ -48,14 +50,15 @@
     justify-content: center;
   }
 }
+
 .register-tip {
   margin-left: 15px;
   font-size: smaller;
 }
 </style>
 
-<script setup lang="ts">
-import { reactive } from 'vue';
+<script lang="ts" setup>
+import {reactive} from 'vue';
 import {UserControllerService as userService} from '@/api'
 import {message} from "@/utils/message";
 import router from "@/router";
@@ -68,13 +71,13 @@ const form = reactive({
 const handleLogin = () => {
   userService.userLoginUsingPost(form).then((res) => {
     if (res.code == 0) {
-      message.success('欢迎回来, '+res.data.userName)
-      localStorage.setItem('userInfo',res.data)
-      setTimeout(()=>{
+      message.success('欢迎回来, ' + res.data.userName)
+      localStorage.setItem('userInfo', res.data)
+      setTimeout(() => {
         router.push({
           path: '/'
         })
-      },1500)
+      }, 1500)
     } else {
       message.error(res.message)
     }

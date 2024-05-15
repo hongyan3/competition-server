@@ -9,24 +9,27 @@ import com.xiyuan.project.model.vo.EntryVO;
 import java.util.List;
 
 /**
-* @author xiyuan
-* @description 针对表【entry(参赛作品)】的数据库操作Service
-* @createDate 2024-02-04 22:06:21
-*/
+ * @author xiyuan
+ * @description 针对表【entry(参赛作品)】的数据库操作Service
+ * @createDate 2024-02-04 22:06:21
+ */
 public interface EntryService extends IService<Entry> {
 
     /**
      * 校验参数
+     *
      * @param entry
      * @param add
      */
     void validEntry(Entry entry, boolean add);
+
     /**
      * 获取脱敏的比赛信息
      *
      * @return
      */
     EntryVO getEntryVO(Entry entry);
+
     /**
      * 获取脱敏的比赛信息
      *
@@ -34,6 +37,7 @@ public interface EntryService extends IService<Entry> {
      * @return
      */
     List<EntryVO> getEntryVO(List<Entry> entryList);
+
     /**
      * 获取查询条件
      *

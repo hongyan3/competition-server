@@ -15,15 +15,16 @@ import java.util.stream.Collectors;
 @Getter
 public enum EntryCommentTypeEnum {
 
-    COMMON("普通评论",1),
-    REPLY_COMMON("回复评论",2);
+    COMMON("普通评论", 1),
+    REPLY_COMMON("回复评论", 2);
     private final String text;
     private final int value;
 
-    EntryCommentTypeEnum(String text,Integer value) {
+    EntryCommentTypeEnum(String text, Integer value) {
         this.text = text;
         this.value = value;
     }
+
     /**
      * 获取值列表
      *

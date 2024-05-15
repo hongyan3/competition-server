@@ -7,9 +7,9 @@ import com.xiyuan.project.common.ErrorCode;
 import com.xiyuan.project.common.ResultUtils;
 import com.xiyuan.project.exception.BusinessException;
 import com.xiyuan.project.exception.ThrowUtils;
+import com.xiyuan.project.model.dto.user.UserUpdateRequest;
 import com.xiyuan.project.model.dto.user.UserAddRequest;
 import com.xiyuan.project.model.dto.user.UserQueryRequest;
-import com.xiyuan.project.model.dto.user.UserUpdateRequest;
 import com.xiyuan.project.model.entity.User;
 import com.xiyuan.project.model.enums.UserRoleEnum;
 import com.xiyuan.project.service.UserService;
@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 public class UserAdminController {
     @Resource
     private UserService userService;
+
     /**
      * 创建用户（仅管理员）
      *
@@ -49,6 +50,7 @@ public class UserAdminController {
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
         return ResultUtils.success(user.getId());
     }
+
     /**
      * 删除用户(仅管理员)
      *
@@ -115,7 +117,7 @@ public class UserAdminController {
      */
     @GetMapping("/{userId}")
     @AuthCheck(AccessRole = UserRoleEnum.ADMIN)
-    public BaseResponse<User> getUserById(@PathVariable Long userId,HttpServletRequest request) {
+    public BaseResponse<User> getUserById(@PathVariable Long userId, HttpServletRequest request) {
         if (userId <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }

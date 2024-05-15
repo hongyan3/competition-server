@@ -1,3 +1,4 @@
-import { TdCascaderProps } from './type';
+import {TdCascaderProps} from './type';
+
 declare const props: TdCascaderProps;
 export default props;

@@ -2,20 +2,21 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { BaseResponse_boolean_ } from '../models/BaseResponse_boolean_';
-import type { BaseResponse_EntryVO_ } from '../models/BaseResponse_EntryVO_';
-import type { BaseResponse_long_ } from '../models/BaseResponse_long_';
-import type { BaseResponse_Page_EntryCommentVO_ } from '../models/BaseResponse_Page_EntryCommentVO_';
-import type { BaseResponse_Page_EntryVO_ } from '../models/BaseResponse_Page_EntryVO_';
-import type { EntryAddRequest } from '../models/EntryAddRequest';
-import type { EntryCommentAddRequest } from '../models/EntryCommentAddRequest';
-import type { EntryEditRequest } from '../models/EntryEditRequest';
-import type { EntryMemberAddRequest } from '../models/EntryMemberAddRequest';
-import type { EntryMemberRemoveRequest } from '../models/EntryMemberRemoveRequest';
-import type { EntrySourceAddRequest } from '../models/EntrySourceAddRequest';
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type {BaseResponse_boolean_} from '../models/BaseResponse_boolean_';
+import type {BaseResponse_EntryVO_} from '../models/BaseResponse_EntryVO_';
+import type {BaseResponse_long_} from '../models/BaseResponse_long_';
+import type {BaseResponse_Page_EntryCommentVO_} from '../models/BaseResponse_Page_EntryCommentVO_';
+import type {BaseResponse_Page_EntryVO_} from '../models/BaseResponse_Page_EntryVO_';
+import type {EntryAddRequest} from '../models/EntryAddRequest';
+import type {EntryCommentAddRequest} from '../models/EntryCommentAddRequest';
+import type {EntryEditRequest} from '../models/EntryEditRequest';
+import type {EntryMemberAddRequest} from '../models/EntryMemberAddRequest';
+import type {EntryMemberRemoveRequest} from '../models/EntryMemberRemoveRequest';
+import type {EntrySourceAddRequest} from '../models/EntrySourceAddRequest';
+import type {CancelablePromise} from '../core/CancelablePromise';
+import {OpenAPI} from '../core/OpenAPI';
+import {request as __request} from '../core/request';
+
 export class EntryControllerService {
     /**
      * getEntryList
@@ -66,6 +67,7 @@ export class EntryControllerService {
             },
         });
     }
+
     /**
      * editEntry
      * @param requestBody
@@ -88,6 +90,7 @@ export class EntryControllerService {
             },
         });
     }
+
     /**
      * addEntry
      * @param requestBody
@@ -110,6 +113,7 @@ export class EntryControllerService {
             },
         });
     }
+
     /**
      * getEntryCommentList
      * @param commentType
@@ -165,6 +169,7 @@ export class EntryControllerService {
             },
         });
     }
+
     /**
      * addEntryComment
      * @param requestBody
@@ -187,6 +192,7 @@ export class EntryControllerService {
             },
         });
     }
+
     /**
      * removeEntryComment
      * @param commentId commentId
@@ -208,6 +214,7 @@ export class EntryControllerService {
             },
         });
     }
+
     /**
      * addEntryMember
      * @param requestBody
@@ -230,6 +237,7 @@ export class EntryControllerService {
             },
         });
     }
+
     /**
      * removeEntryMember
      * @param requestBody
@@ -250,6 +258,7 @@ export class EntryControllerService {
             },
         });
     }
+
     /**
      * addEntrySource
      * @param requestBody
@@ -272,6 +281,7 @@ export class EntryControllerService {
             },
         });
     }
+
     /**
      * removeEntrySource
      * @param sourceId sourceId
@@ -293,6 +303,7 @@ export class EntryControllerService {
             },
         });
     }
+
     /**
      * getEntryById
      * @param entryId entryId
@@ -315,6 +326,7 @@ export class EntryControllerService {
             },
         });
     }
+
     /**
      * removeEntry
      * @param entryId entryId

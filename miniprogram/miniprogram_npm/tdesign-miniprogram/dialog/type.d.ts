@@ -1,4 +1,5 @@
-import { ButtonProps } from '../button/index';
+import {ButtonProps} from '../button/index';
+
 export interface TdDialogProps {
     actions?: {
         type: ArrayConstructor;

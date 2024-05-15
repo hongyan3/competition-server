@@ -1,4 +1,5 @@
-import { SwiperNavProps } from '../swiper-nav/index';
+import {SwiperNavProps} from '../swiper-nav/index';
+
 export interface TdSwiperProps {
     autoplay?: {
         type: BooleanConstructor;

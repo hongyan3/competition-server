@@ -1,4 +1,5 @@
-import { SuperComponent } from '../common/src/index';
+import {SuperComponent} from '../common/src/index';
+
 export default class SwiperCell extends SuperComponent {
     externalClasses: string[];
     options: {
@@ -11,13 +12,22 @@ export default class SwiperCell extends SuperComponent {
         closed: boolean;
         classPrefix: string;
     };
+
     attached(): void;
+
     ready(): void;
+
     setSwipeWidth(): void;
+
     detached(): void;
+
     open(): void;
+
     close(): void;
+
     closeOther(): void;
+
     onTap(): void;
+
     onActionTap(event: any): void;
 }

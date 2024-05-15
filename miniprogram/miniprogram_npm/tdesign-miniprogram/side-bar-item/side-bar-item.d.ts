@@ -1,4 +1,5 @@
-import { SuperComponent, RelationsOptions } from '../common/src/index';
+import {SuperComponent, RelationsOptions} from '../common/src/index';
+
 export default class SideBarItem extends SuperComponent {
     externalClasses: string[];
     properties: import("./type").TdSideBarItemProps;

@@ -1,4 +1,5 @@
-import { ImageProps } from '../image/index';
+import {ImageProps} from '../image/index';
+
 export interface TdUploadProps {
     addContent?: {
         type: StringConstructor;
@@ -61,26 +62,32 @@ export interface TdUploadProps {
         value?: 'media' | 'messageFile';
     };
 }
+
 export declare type UploadMpConfig = ImageConfig | VideoConfig;
+
 export interface ImageConfig {
     count?: number;
     sizeType?: Array<SizeTypeValues>;
     sourceType?: Array<SourceTypeValues>;
 }
+
 export declare type SizeTypeValues = 'original' | 'compressed';
 export declare type SourceTypeValues = 'album' | 'camera';
+
 export interface VideoConfig {
     sourceType?: Array<SourceTypeValues>;
     compressed?: boolean;
     maxDuration?: number;
     camera?: 'back' | 'front';
 }
+
 export interface UploadDisplayDragEvents {
     onDrop?: (event: DragEvent) => void;
     onDragenter?: (event: DragEvent) => void;
     onDragover?: (event: DragEvent) => void;
     onDragleave?: (event: DragEvent) => void;
 }
+
 export interface UploadFile {
     url: string;
     name?: string;
@@ -89,11 +96,14 @@ export interface UploadFile {
     percent?: number;
     status: 'loading' | 'reload' | 'failed' | 'done';
 }
+
 export declare type MediaType = 'image' | 'video';
+
 export interface SizeLimitObj {
     size: number;
     unit: SizeUnit;
     message?: string;
 }
+
 export declare type SizeUnitArray = ['B', 'KB', 'MB', 'GB'];
 export declare type SizeUnit = SizeUnitArray[number];

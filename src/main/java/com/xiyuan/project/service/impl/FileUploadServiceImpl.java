@@ -15,8 +15,8 @@ import java.nio.file.Paths;
 @Slf4j
 public class FileUploadServiceImpl implements FileUploadService {
     @Override
-    public void UploadFileToLocal(String filePath,File file) {
-        String savePath = FileConstant.LOCAL_FILE_PAth +filePath;
+    public void UploadFileToLocal(String filePath, File file) {
+        String savePath = FileConstant.LOCAL_FILE_PAth + filePath;
         File tempFile = null;
         try {
             tempFile = new File(savePath);
@@ -24,13 +24,13 @@ public class FileUploadServiceImpl implements FileUploadService {
 //            如果父文件夹不存在，则创建
             if (!parentDir.exists()) {
                 if (!parentDir.mkdirs()) {
-                    throw new BusinessException(ErrorCode.SYSTEM_ERROR,"文件夹创建失败");
+                    throw new BusinessException(ErrorCode.SYSTEM_ERROR, "文件夹创建失败");
                 }
             }
-            Files.copy(Paths.get(file.toURI()),Paths.get(tempFile.toURI()));
+            Files.copy(Paths.get(file.toURI()), Paths.get(tempFile.toURI()));
         } catch (Exception e) {
             log.error("file upload error, filepath = " + savePath, e);
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR,"文件上传失败");
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "文件上传失败");
         }
     }
 }

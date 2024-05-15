@@ -1,4 +1,5 @@
-import { SuperComponent, RelationsOptions } from '../common/src/index';
+import {SuperComponent, RelationsOptions} from '../common/src/index';
+
 export default class TabBarItem extends SuperComponent {
     externalClasses: string[];
     parent: any;

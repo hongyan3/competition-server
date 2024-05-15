@@ -28,11 +28,14 @@ export interface TdCheckboxGroupProps {
         value?: CheckboxGroupValue;
     };
 }
+
 export declare type CheckboxOption = string | number | CheckboxOptionObj;
+
 export interface CheckboxOptionObj {
     label?: string;
     value?: string | number;
     disabled?: boolean;
     checkAll?: true;
 }
+
 export declare type CheckboxGroupValue = Array<string | number>;

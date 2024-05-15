@@ -1,4 +1,5 @@
-import { ButtonProps } from '../button/index';
+import {ButtonProps} from '../button/index';
+
 export interface TdPickerProps {
     autoClose?: {
         type: BooleanConstructor;
@@ -41,9 +42,12 @@ export interface TdPickerProps {
         value?: boolean;
     };
 }
+
 export declare type PickerColumn = PickerColumnItem[];
+
 export interface PickerColumnItem {
     label: string;
     value: string;
 }
+
 export declare type PickerValue = string | number;

@@ -1,4 +1,5 @@
-import { SuperComponent, ComponentsOptionsType, RelationsOptions } from '../common/src/index';
+import {SuperComponent, ComponentsOptionsType, RelationsOptions} from '../common/src/index';
+
 export default class CheckBox extends SuperComponent {
     externalClasses: string[];
     behaviors: string[];

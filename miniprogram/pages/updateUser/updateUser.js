@@ -1,30 +1,31 @@
-import {File,User} from '@utils/api'
+import {File, User} from '@utils/api'
 import showMessage from '~/components/showMessage'
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-      genderVisible: false,
-      genderList: [
-        {value: 1,label: '男'},
-        {value: 2,label: '女'}
-      ],
-      genderText: '',
-      form: {
-        gender: '',
-        userAvatar: ''
-      },
-      fileList: [],
-      defaultGender: '',
+        genderVisible: false,
+        genderList: [
+            {value: 1, label: '男'},
+            {value: 2, label: '女'}
+        ],
+        genderText: '',
+        form: {
+            gender: '',
+            userAvatar: ''
+        },
+        fileList: [],
+        defaultGender: '',
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-      this.getLocalInfo()
+        this.getLocalInfo()
     },
 
     /**
@@ -76,53 +77,53 @@ Page({
 
     },
     onGenderPicker() {
-      this.setData({
-        genderVisible: true
-      })
+        this.setData({
+            genderVisible: true
+        })
     },
     onPickerConfirm(e) {
-      this.setData({
-        [`form.gender`]: e.detail.value[0],
-        genderText: e.detail.label[0]
-      })
+        this.setData({
+            [`form.gender`]: e.detail.value[0],
+            genderText: e.detail.label[0]
+        })
     },
     handleAdd(e) {
-      File.uploadFile(e.detail.files[0].url).then(res => {
-        if (res.code == 0) {
-          this.setData({
-            [`form.userAvatar`]: res.data
-          })
-        } else {
-          showMessage.warning(res.message)
-        }
-      })
-      this.setData({
-        fileList: e.detail.files
-      })
+        File.uploadFile(e.detail.files[0].url).then(res => {
+            if (res.code == 0) {
+                this.setData({
+                    [`form.userAvatar`]: res.data
+                })
+            } else {
+                showMessage.warning(res.message)
+            }
+        })
+        this.setData({
+            fileList: e.detail.files
+        })
     },
     handleRemove(e) {
-      this.setData({
-        fileList: []
-      })
+        this.setData({
+            fileList: []
+        })
     },
     submit() {
-      User.updateUser(this.data.form).then(res => {
-        if (res.data.code == 0) {
-          showMessage.success('更新成功')
-        } else {
-          showMessage.warning(res.data.message)
-          console.log(res.data);
-        }
-      })
-      console.log(this.data.form);
+        User.updateUser(this.data.form).then(res => {
+            if (res.data.code == 0) {
+                showMessage.success('更新成功')
+            } else {
+                showMessage.warning(res.data.message)
+                console.log(res.data);
+            }
+        })
+        console.log(this.data.form);
     },
     getLocalInfo() {
-      let info = wx.getStorageSync('userInfo')
-      this.setData({
-        defaultGender: info.gender,
-        fileList: [
-          {url: info.userAvatar}
-        ]
-      })
+        let info = wx.getStorageSync('userInfo')
+        this.setData({
+            defaultGender: info.gender,
+            fileList: [
+                {url: info.userAvatar}
+            ]
+        })
     }
 })

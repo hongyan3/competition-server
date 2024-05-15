@@ -1,4 +1,5 @@
-import { SuperComponent, RelationsOptions } from '../common/src/index';
+import {SuperComponent, RelationsOptions} from '../common/src/index';
+
 export default class PickerItem extends SuperComponent {
     relations: RelationsOptions;
     externalClasses: string[];
@@ -22,6 +23,8 @@ export default class PickerItem extends SuperComponent {
         resetOrigin(): void;
         getCount(): any;
     };
+
     calculateViewDeltaY(touchDeltaY: number): number;
+
     created(): void;
 }

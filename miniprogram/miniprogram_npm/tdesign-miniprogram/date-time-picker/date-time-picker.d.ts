@@ -1,5 +1,6 @@
-import type { Dayjs } from 'dayjs';
-import { SuperComponent } from '../common/src/index';
+import type {Dayjs} from 'dayjs';
+import {SuperComponent} from '../common/src/index';
+
 declare enum ModeItem {
     YEAR = "year",
     MONTH = "month",
@@ -8,10 +9,12 @@ declare enum ModeItem {
     MINUTE = "minute",
     SECOND = "second"
 }
+
 interface ColumnItemValue {
     value: string | number;
     label: string | number;
 }
+
 export default class DateTimePicker extends SuperComponent {
     properties: import("./type").TdDateTimePickerProps;
     externalClasses: string[];
@@ -77,8 +80,11 @@ export default class DateTimePicker extends SuperComponent {
         onClose(e: any): void;
         resetColumns(): void;
     };
+
     getFullModeArray(mode: any): any;
+
     getFullModeByModeString(modeString: any, matchModes: any): any;
+
     isTimeMode(): boolean;
 }
 export {};

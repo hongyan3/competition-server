@@ -1,4 +1,5 @@
-import { SuperComponent, RelationsOptions } from '../common/src/index';
+import {SuperComponent, RelationsOptions} from '../common/src/index';
+
 export default class CheckBoxGroup extends SuperComponent {
     externalClasses: string[];
     relations: RelationsOptions;
@@ -56,7 +57,7 @@ export default class CheckBoxGroup extends SuperComponent {
     methods: {
         getChilds(): any;
         updateChildren(): void;
-        updateValue({ value, checked, checkAll, indeterminate }: {
+        updateValue({value, checked, checkAll, indeterminate}: {
             value: any;
             checked: any;
             checkAll: any;

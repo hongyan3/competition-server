@@ -1,4 +1,5 @@
-import { SuperComponent } from '../common/src/index';
+import {SuperComponent} from '../common/src/index';
+
 export default class Fab extends SuperComponent {
     properties: import("./type").TdFabProps;
     externalClasses: string[];

@@ -1,7 +1,9 @@
-import { SuperComponent, RelationsOptions } from '../common/src/index';
-import { TdTabsProps } from './type';
+import {SuperComponent, RelationsOptions} from '../common/src/index';
+import {TdTabsProps} from './type';
+
 export interface TabsProps extends TdTabsProps {
 }
+
 export default class Tabs extends SuperComponent {
     behaviors: string[];
     externalClasses: string[];
@@ -30,7 +32,9 @@ export default class Tabs extends SuperComponent {
         created(): void;
         attached(): void;
     };
+
     initChildId(): void;
+
     methods: {
         updateTabs(cb: any): void;
         setCurrentIndexByName(name: any): void;

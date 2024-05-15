@@ -9,14 +9,12 @@ import com.xiyuan.project.exception.BusinessException;
 import com.xiyuan.project.exception.ThrowUtils;
 import com.xiyuan.project.mapper.EntryMapper;
 import com.xiyuan.project.model.dto.entry.EntryQueryRequest;
+import com.xiyuan.project.model.entity.College;
 import com.xiyuan.project.model.entity.Entry;
 import com.xiyuan.project.model.entity.EntrySource;
 import com.xiyuan.project.model.vo.EntryVO;
 import com.xiyuan.project.model.vo.UserVO;
-import com.xiyuan.project.service.EntryMemberService;
-import com.xiyuan.project.service.EntryService;
-import com.xiyuan.project.service.EntrySourceService;
-import com.xiyuan.project.service.UserService;
+import com.xiyuan.project.service.*;
 import com.xiyuan.project.utils.SqlUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -42,6 +40,8 @@ public class EntryServiceImpl extends ServiceImpl<EntryMapper, Entry>
     EntryMemberService entryMemberService;
     @Resource
     EntrySourceService entrySourceService;
+    @Resource
+    CollegeService collegeService;
     @Override
     public void validEntry(Entry entry, boolean add) {
         if (entry == null) {
@@ -63,6 +63,7 @@ public class EntryServiceImpl extends ServiceImpl<EntryMapper, Entry>
         }
         Long id = entry.getId();
         Long creatorId = entry.getCreatorId();
+        Long collegeId = entry.getCollegeId();
         EntryVO entryVO = new EntryVO();
         BeanUtils.copyProperties(entry, entryVO);
         // 获取创建者信息
@@ -71,9 +72,11 @@ public class EntryServiceImpl extends ServiceImpl<EntryMapper, Entry>
         List<UserVO> entryMemberList = entryMemberService.getEntryMemberToUserVOList(id);
         // 获取资源列表
         List<EntrySource> entrySourceList = entrySourceService.getEntrySourceList(id);
+        College college = collegeService.getById(collegeId);
         entryVO.setCreatorInfo(userVO);
         entryVO.setMembers(entryMemberList);
         entryVO.setSources(entrySourceList);
+        entryVO.setCollegeName(college.getCollegeName());
         return entryVO;
     }
 
@@ -95,18 +98,19 @@ public class EntryServiceImpl extends ServiceImpl<EntryMapper, Entry>
         Long creatorId = entryQueryRequest.getCreatorId();
         String entryName = entryQueryRequest.getEntryName();
         String description = entryQueryRequest.getDescription();
-        String college = entryQueryRequest.getCollege();
+        Long collegeId = entryQueryRequest.getCollegeId();
+        Integer status = entryQueryRequest.getStatus();
         String sortField = entryQueryRequest.getSortField();
         String sortOrder = entryQueryRequest.getSortOrder();
         // 拼接查询条件
         QueryWrapper<Entry> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq(creatorId != null, "creator_id", id);
         queryWrapper.eq(id != null, "id", id);
+        queryWrapper.eq(collegeId != null,"college_id",collegeId);
+        queryWrapper.eq(status != null,"status",status);
         queryWrapper.like(StringUtils.isNotBlank(entryName), "entry_name", entryName)
                 .or()
-                .like(StringUtils.isNotBlank(description), "description", description)
-                .or()
-                .like(StringUtils.isNotBlank(college), "college", college);
+                .like(StringUtils.isNotBlank(description), "description", description);
         queryWrapper.orderBy(SqlUtils.validSortField(sortField), sortOrder.equals(CommonConstant.SORT_ORDER_ASC),
                 sortField);
         return queryWrapper;

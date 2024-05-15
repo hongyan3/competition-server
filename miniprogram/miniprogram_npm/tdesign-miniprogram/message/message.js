@@ -1,14 +1,16 @@
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { SuperComponent, wxComponent } from '../common/src/index';
+import {SuperComponent, wxComponent} from '../common/src/index';
 import config from '../common/config';
 import props from './props';
-import { getRect, unitConvert, calcIcon, isObject } from '../common/utils';
-const { prefix } = config;
+import {getRect, unitConvert, calcIcon, isObject} from '../common/utils';
+
+const {prefix} = config;
 const name = `${prefix}-message`;
 const SHOW_DURATION = 500;
 const THEME_ICON = {
@@ -58,8 +60,8 @@ let Message = class Message extends SuperComponent {
                 });
             },
             link(v) {
-                const _link = isObject(v) ? Object.assign({}, v) : { content: v };
-                this.setData({ _link });
+                const _link = isObject(v) ? Object.assign({}, v) : {content: v};
+                this.setData({_link});
             },
             closeBtn(v) {
                 this.setData({
@@ -74,18 +76,23 @@ let Message = class Message extends SuperComponent {
             timingFunction: 'linear',
         });
     }
+
     ready() {
         this.memoInitalData();
     }
+
     memoInitalData() {
         this.initalData = Object.assign(Object.assign({}, this.properties), this.data);
     }
+
     resetData(cb) {
         this.setData(Object.assign({}, this.initalData), cb);
     }
+
     detached() {
         this.clearMessageAnimation();
     }
+
     checkAnimation() {
         if (!this.properties.marquee) {
             return;
@@ -93,9 +100,8 @@ let Message = class Message extends SuperComponent {
         const speeding = this.properties.marquee.speed;
         if (this.data.loop > 0) {
             this.data.loop -= 1;
-        }
-        else if (this.data.loop === 0) {
-            this.setData({ animation: this.resetAnimation.translateX(0).step().export() });
+        } else if (this.data.loop === 0) {
+            this.setData({animation: this.resetAnimation.translateX(0).step().export()});
             return;
         }
         if (this.nextAnimationContext) {
@@ -110,39 +116,41 @@ let Message = class Message extends SuperComponent {
                 const durationTime = ((nodeRect.width + wrapRect.width) / speeding) * 1000;
                 const nextAnimation = wx
                     .createAnimation({
-                    duration: durationTime,
-                })
+                        duration: durationTime,
+                    })
                     .translateX(-nodeRect.width)
                     .step()
                     .export();
                 setTimeout(() => {
                     this.nextAnimationContext = setTimeout(this.checkAnimation.bind(this), durationTime);
-                    this.setData({ animation: nextAnimation });
+                    this.setData({animation: nextAnimation});
                 }, 20);
             });
         });
     }
+
     clearMessageAnimation() {
         clearTimeout(this.nextAnimationContext);
         this.nextAnimationContext = 0;
     }
+
     show() {
-        const { duration, marquee, offset } = this.properties;
-        this.setData({ visible: true, loop: marquee.loop });
+        const {duration, marquee, offset} = this.properties;
+        this.setData({visible: true, loop: marquee.loop});
         this.reset();
         this.checkAnimation();
         if (duration && duration > 0) {
             this.closeTimeoutContext = setTimeout(() => {
                 this.hide();
-                this.triggerEvent('duration-end', { self: this });
+                this.triggerEvent('duration-end', {self: this});
             }, duration);
         }
         const wrapID = `#${name}`;
         getRect(this, wrapID).then((wrapRect) => {
-            this.setData({ wrapTop: -wrapRect.height }, () => {
+            this.setData({wrapTop: -wrapRect.height}, () => {
                 this.setData({
                     showAnimation: wx
-                        .createAnimation({ duration: SHOW_DURATION, timingFunction: 'ease' })
+                        .createAnimation({duration: SHOW_DURATION, timingFunction: 'ease'})
                         .translateY(wrapRect.height + unitConvert(offset[0]))
                         .step()
                         .export(),
@@ -150,19 +158,21 @@ let Message = class Message extends SuperComponent {
             });
         });
     }
+
     hide() {
         this.reset();
         this.setData({
             showAnimation: wx
-                .createAnimation({ duration: SHOW_DURATION, timingFunction: 'ease' })
+                .createAnimation({duration: SHOW_DURATION, timingFunction: 'ease'})
                 .translateY(this.data.wrapTop)
                 .step()
                 .export(),
         });
         setTimeout(() => {
-            this.setData({ visible: false, animation: [] });
+            this.setData({visible: false, animation: []});
         }, SHOW_DURATION);
     }
+
     reset() {
         if (this.nextAnimationContext) {
             this.clearMessageAnimation();
@@ -170,10 +180,12 @@ let Message = class Message extends SuperComponent {
         clearTimeout(this.closeTimeoutContext);
         this.closeTimeoutContext = 0;
     }
+
     handleClose() {
         this.hide();
         this.triggerEvent('close-btn-click');
     }
+
     handleLinkClick() {
         this.triggerEvent('link-click');
     }

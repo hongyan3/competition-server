@@ -2,8 +2,6 @@ package com.xiyuan.project.common;
 
 /**
  * 返回工具类
- *
-
  */
 public class ResultUtils {
 

@@ -15,13 +15,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
-* @author xiyuan
-* @description 针对表【entry_source(作品资源)】的数据库操作Service实现
-* @createDate 2024-02-04 22:57:12
-*/
+ * @author xiyuan
+ * @description 针对表【entry_source(作品资源)】的数据库操作Service实现
+ * @createDate 2024-02-04 22:57:12
+ */
 @Service
 public class EntrySourceServiceImpl extends ServiceImpl<EntrySourceMapper, EntrySource>
-    implements EntrySourceService{
+        implements EntrySourceService {
 
     @Override
     public List<EntrySource> getEntrySourceList(Long entryId) {
@@ -39,7 +39,7 @@ public class EntrySourceServiceImpl extends ServiceImpl<EntrySourceMapper, Entry
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         boolean result = this.removeById(entrySourceId);
-        ThrowUtils.throwIf(!result,ErrorCode.OPERATION_ERROR);
+        ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class EntrySourceServiceImpl extends ServiceImpl<EntrySourceMapper, Entry
         String sourceUrl = entrySource.getSourceUrl();
         String sourceName = entrySource.getSourceName();
         // 校验参数是否为空白
-        if (StringUtils.isAnyBlank(sourceType,sourceUrl,sourceName)) {
+        if (StringUtils.isAnyBlank(sourceType, sourceUrl, sourceName)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         EntrySourceTypeEnum typeEnum = EntrySourceTypeEnum.getEnumByValue(sourceType);
@@ -64,7 +64,7 @@ public class EntrySourceServiceImpl extends ServiceImpl<EntrySourceMapper, Entry
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         boolean result = this.save(entrySource);
-        ThrowUtils.throwIf(!result,ErrorCode.OPERATION_ERROR);
+        ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
     }
 }
 

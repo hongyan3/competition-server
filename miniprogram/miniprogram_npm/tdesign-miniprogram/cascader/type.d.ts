@@ -1,4 +1,5 @@
-import { TreeOptionData, KeysType } from '../common/common';
+import {TreeOptionData, KeysType} from '../common/common';
+
 export interface TdCascaderProps<CascaderOption extends TreeOptionData = TreeOptionData> {
     closeBtn?: {
         type: BooleanConstructor;

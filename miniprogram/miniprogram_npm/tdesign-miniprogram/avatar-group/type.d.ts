@@ -24,4 +24,5 @@ export interface TdAvatarGroupProps {
         value?: string;
     };
 }
+
 export declare type CascadingValue = 'left-up' | 'right-up';

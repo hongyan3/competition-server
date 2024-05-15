@@ -36,5 +36,6 @@ export interface TdProgressProps {
         value?: string;
     };
 }
+
 export declare type StatusEnum = 'success' | 'error' | 'warning' | 'active';
 export declare type ThemeEnum = 'line' | 'plump' | 'circle';

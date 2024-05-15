@@ -36,4 +36,5 @@ export interface TdSwitchProps {
         value?: SwitchValue;
     };
 }
+
 export declare type SwitchValue = string | number | boolean;

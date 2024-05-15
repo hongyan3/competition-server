@@ -15,16 +15,18 @@ import java.util.stream.Collectors;
  */
 @Getter
 public enum EntrySourceTypeEnum {
-    IMAGE("图片","image"),
-    VIDEO("视频","video"),
-    AUDIO("音频","audio"),
-    FILE("文件","file");
+    IMAGE("图片", "image"),
+    VIDEO("视频", "video"),
+    AUDIO("音频", "audio"),
+    FILE("文件", "file");
     private final String text;
     private final String value;
-    EntrySourceTypeEnum(String text,String value) {
+
+    EntrySourceTypeEnum(String text, String value) {
         this.text = text;
         this.value = value;
     }
+
     /**
      * 获取值列表
      *
@@ -33,6 +35,7 @@ public enum EntrySourceTypeEnum {
     public static List<String> getValues() {
         return Arrays.stream(values()).map(item -> item.value).collect(Collectors.toList());
     }
+
     /**
      * 根据 value 获取枚举
      *

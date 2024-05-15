@@ -1,4 +1,5 @@
-import { SuperComponent, RelationsOptions } from '../common/src/index';
+import {SuperComponent, RelationsOptions} from '../common/src/index';
+
 export default class TabPanel extends SuperComponent {
     externalClasses: string[];
     relations: RelationsOptions;
@@ -10,11 +11,16 @@ export default class TabPanel extends SuperComponent {
         hide: boolean;
         id: string;
     };
+
     setId(id: any): void;
+
     observers: {
         'label, badgeProps, disabled, icon, panel, value'(): void;
     };
+
     getComputedName(): string;
+
     update(): void;
+
     render(active: Boolean, parent: any): void;
 }

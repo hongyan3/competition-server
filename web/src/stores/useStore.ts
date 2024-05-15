@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia'
+import {defineStore} from 'pinia'
 import type {UserVO} from "@/api";
-import { userInfo } from 'os';
+import {userInfo} from 'os';
 
 export const useStore = defineStore('auth', {
     state() {

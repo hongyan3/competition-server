@@ -9,23 +9,26 @@ import com.xiyuan.project.model.vo.EntryCommentVO;
 import java.util.List;
 
 /**
-* @author xiyuan
-* @description 针对表【entry_comment(作品评论)】的数据库操作Service
-* @createDate 2024-02-06 20:42:45
-*/
+ * @author xiyuan
+ * @description 针对表【entry_comment(作品评论)】的数据库操作Service
+ * @createDate 2024-02-06 20:42:45
+ */
 public interface EntryCommentService extends IService<EntryComment> {
     /**
      * 校验参数
+     *
      * @param entryComment
      * @param add
      */
     void validEntryComment(EntryComment entryComment, boolean add);
+
     /**
      * 获取脱敏的比赛信息
      *
      * @return
      */
     EntryCommentVO getEntryCommentVO(EntryComment entryComment);
+
     /**
      * 获取脱敏的比赛信息
      *
@@ -33,6 +36,7 @@ public interface EntryCommentService extends IService<EntryComment> {
      * @return
      */
     List<EntryCommentVO> getEntryCommentVO(List<EntryComment> entryList);
+
     /**
      * 获取查询条件
      *

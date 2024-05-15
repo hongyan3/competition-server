@@ -1,3 +1,4 @@
-import { TdSwiperNavProps } from './type';
+import {TdSwiperNavProps} from './type';
+
 declare const props: TdSwiperNavProps;
 export default props;

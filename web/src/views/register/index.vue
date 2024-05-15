@@ -4,27 +4,27 @@
     <div class="form">
       <a-form :model="form" :style="{ width: '600px' }" @submit="handleRegister">
         <a-form-item field="username" label="昵称">
-          <a-input v-model="form.userName" placeholder="请输入昵称" :style="{ width: '250px' }" />
+          <a-input v-model="form.userName" :style="{ width: '250px' }" placeholder="请输入昵称"/>
         </a-form-item>
         <a-form-item field="useraccount" label="账户">
-          <a-input v-model="form.userAccount" placeholder="请输入账户" :style="{ width: '250px' }" />
+          <a-input v-model="form.userAccount" :style="{ width: '250px' }" placeholder="请输入账户"/>
         </a-form-item>
         <a-form-item field="password" label="密码">
-          <a-input type="password" v-model="form.userPassword" placeholder="请输入密码" :style="{ width: '250px' }" />
+          <a-input v-model="form.userPassword" :style="{ width: '250px' }" placeholder="请输入密码" type="password"/>
         </a-form-item>
         <a-form-item field="confirmpassword" label="确认密码">
-          <a-input type="password" v-model="form.checkPassword" placeholder="请输入密码" :style="{ width: '250px' }" />
+          <a-input v-model="form.checkPassword" :style="{ width: '250px' }" placeholder="请输入密码" type="password"/>
         </a-form-item>
         <a-form-item>
           <a-button html-type="submit" type="primary">注册</a-button>
-          <RouterLink to="/login" class="register-tip">已有账号？去登录</RouterLink>
+          <RouterLink class="register-tip" to="/login">已有账号？去登录</RouterLink>
         </a-form-item>
       </a-form>
     </div>
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .login-form {
   width: 700px;
   height: 400px;
@@ -35,6 +35,7 @@
   flex-direction: column;
   justify-content: center;
   border-radius: 5px;
+
   .title {
     width: 100%;
     height: 20%;
@@ -46,6 +47,7 @@
     padding-left: 30px;
     border-radius: 5px;
   }
+
   .form {
     width: 100%;
     height: 80%;
@@ -54,14 +56,15 @@
     justify-content: center;
   }
 }
+
 .register-tip {
   margin-left: 15px;
   font-size: smaller;
 }
 </style>
 
-<script setup lang="ts">
-import { reactive } from 'vue';
+<script lang="ts" setup>
+import {reactive} from 'vue';
 import {Message} from "@arco-design/web-vue";
 import {UserControllerService as userService} from '@/api'
 import router from "@/router";
@@ -85,7 +88,7 @@ const handleRegister = () => {
         router.push({
           path: '/login'
         })
-      },1000)
+      }, 1000)
     } else {
       Message.error(res.message)
     }

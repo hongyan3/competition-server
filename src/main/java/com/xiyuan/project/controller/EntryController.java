@@ -152,7 +152,7 @@ public class EntryController {
         // 判断成员是否已存在
         List<EntryMember> entryMemberList = entryMemberService.getEntryMemberList(entryMember);
         if (CollectionUtils.isNotEmpty(entryMemberList)) {
-            throw new BusinessException(ErrorCode.OPERATION_ERROR,"该成员已存在");
+            throw new BusinessException(ErrorCode.OPERATION_ERROR, "该成员已存在");
         }
         entryMemberService.addEntryMember(entryMember);
         return ResultUtils.success(true);
@@ -203,7 +203,7 @@ public class EntryController {
             throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
         }
         EntrySource entrySource = new EntrySource();
-        BeanUtils.copyProperties(addRequest,entrySource);
+        BeanUtils.copyProperties(addRequest, entrySource);
         entrySourceService.addEntrySource(entrySource);
         return ResultUtils.success(true);
     }
@@ -233,12 +233,13 @@ public class EntryController {
         }
         long current = queryRequest.getCurrent();
         long pageSize = queryRequest.getPageSize();
-        Page<EntryComment> entryCommentPage = entryCommentService.page(new Page<>(current,pageSize), entryCommentService.getQueryWrapper(queryRequest));
+        Page<EntryComment> entryCommentPage = entryCommentService.page(new Page<>(current, pageSize), entryCommentService.getQueryWrapper(queryRequest));
         List<EntryCommentVO> entryCommentVOList = entryCommentService.getEntryCommentVO(entryCommentPage.getRecords());
-        Page<EntryCommentVO> entryCommentVOPage = new Page<>(current,pageSize,entryCommentPage.getTotal());
+        Page<EntryCommentVO> entryCommentVOPage = new Page<>(current, pageSize, entryCommentPage.getTotal());
         entryCommentVOPage.setRecords(entryCommentVOList);
         return ResultUtils.success(entryCommentVOPage);
     }
+
     @PostMapping("/comment")
     public BaseResponse<Boolean> addEntryComment(@RequestBody EntryCommentAddRequest addRequest, HttpServletRequest request) {
         if (addRequest == null) {
@@ -252,12 +253,12 @@ public class EntryController {
             throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
         }
         EntryComment entryComment = new EntryComment();
-        BeanUtils.copyProperties(addRequest,entryComment);
+        BeanUtils.copyProperties(addRequest, entryComment);
         entryComment.setUserId(currentUser.getId());
 
-        entryCommentService.validEntryComment(entryComment,true);
+        entryCommentService.validEntryComment(entryComment, true);
         boolean result = entryCommentService.save(entryComment);
-        ThrowUtils.throwIf(!result,ErrorCode.OPERATION_ERROR);
+        ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
         return ResultUtils.success(true);
     }
 

@@ -6,6 +6,7 @@ isComponent: true
 ---
 
 <span class="coverages-badge" style="margin-right: 10px"><img src="https://img.shields.io/badge/coverages%3A%20lines-100%25-blue" /></span><span class="coverages-badge" style="margin-right: 10px"><img src="https://img.shields.io/badge/coverages%3A%20functions-100%25-blue" /></span><span class="coverages-badge" style="margin-right: 10px"><img src="https://img.shields.io/badge/coverages%3A%20statements-100%25-blue" /></span><span class="coverages-badge" style="margin-right: 10px"><img src="https://img.shields.io/badge/coverages%3A%20branches-100%25-blue" /></span>
+
 ## 引入
 
 全局引入，在 miniprogram 根目录下的`app.json`中配置，局部引入，在需要引入的页面或组件的`index.json`中配置。
@@ -29,12 +30,13 @@ isComponent: true
 {{ theme }}
 
 ## API
+
 ### Divider Props
 
-名称 | 类型 | 默认值 | 说明 | 必传
--- | -- | -- | -- | --
-align | String | center | 文本位置（仅在水平分割线有效）。可选项：left/right/center | N
-content | String / Slot | - | 子元素 | N
-dashed | Boolean | false | 是否虚线（仅在水平分割线有效） | N
-external-classes | Array | - | 组件类名，分别用于设置 组件外层类名、分隔线类名 等。`['t-class', 't-class-line', 't-class-content']` | N
-layout | String | horizontal | 分隔线类型有两种：水平和垂直。可选项：horizontal/vertical | N
+ 名称               | 类型            | 默认值        | 说明                                                                          | 必传 
+------------------|---------------|------------|-----------------------------------------------------------------------------|----
+ align            | String        | center     | 文本位置（仅在水平分割线有效）。可选项：left/right/center                                       | N  
+ content          | String / Slot | -          | 子元素                                                                         | N  
+ dashed           | Boolean       | false      | 是否虚线（仅在水平分割线有效）                                                             | N  
+ external-classes | Array         | -          | 组件类名，分别用于设置 组件外层类名、分隔线类名 等。`['t-class', 't-class-line', 't-class-content']` | N  
+ layout           | String        | horizontal | 分隔线类型有两种：水平和垂直。可选项：horizontal/vertical                                      | N  

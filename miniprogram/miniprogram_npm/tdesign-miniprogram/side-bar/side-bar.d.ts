@@ -1,4 +1,5 @@
-import { SuperComponent, RelationsOptions } from '../common/src/index';
+import {SuperComponent, RelationsOptions} from '../common/src/index';
+
 export default class SideBar extends SuperComponent {
     externalClasses: string[];
     childs: any[];
@@ -16,7 +17,7 @@ export default class SideBar extends SuperComponent {
         prefix: string;
     };
     methods: {
-        doChange({ value, label }: {
+        doChange({value, label}: {
             value: any;
             label: any;
         }): void;

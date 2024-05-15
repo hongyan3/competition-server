@@ -52,4 +52,5 @@ export interface TdSliderProps {
         value?: SliderValue;
     };
 }
+
 export declare type SliderValue = number | Array<number>;

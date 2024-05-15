@@ -1,3 +1,4 @@
-import { TdToastProps } from './type';
+import {TdToastProps} from './type';
+
 declare const props: TdToastProps;
 export default props;

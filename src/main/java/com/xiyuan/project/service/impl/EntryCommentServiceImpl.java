@@ -27,16 +27,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
-* @author xiyuan
-* @description 针对表【entry_comment(作品评论)】的数据库操作Service实现
-* @createDate 2024-02-06 20:42:45
-*/
+ * @author xiyuan
+ * @description 针对表【entry_comment(作品评论)】的数据库操作Service实现
+ * @createDate 2024-02-06 20:42:45
+ */
 @Service
 public class EntryCommentServiceImpl extends ServiceImpl<EntryCommentMapper, EntryComment>
-    implements EntryCommentService{
+        implements EntryCommentService {
 
     @Resource
     UserService userService;
+
     @Override
     public void validEntryComment(EntryComment entryComment, boolean add) {
         if (entryComment == null) {
@@ -50,7 +51,7 @@ public class EntryCommentServiceImpl extends ServiceImpl<EntryCommentMapper, Ent
             ThrowUtils.throwIf(StringUtils.isAnyBlank(content), ErrorCode.PARAMS_ERROR);
             EntryCommentTypeEnum enumByValue = EntryCommentTypeEnum.getEnumByValue(commentType);
             if (enumByValue == null) {
-                throw new BusinessException(ErrorCode.PARAMS_ERROR,"评论类型错误");
+                throw new BusinessException(ErrorCode.PARAMS_ERROR, "评论类型错误");
             }
         }
         if (entryId == null || entryId <= 0) {
@@ -79,7 +80,7 @@ public class EntryCommentServiceImpl extends ServiceImpl<EntryCommentMapper, Ent
             replyComment = this.getById(replyId);
         }
         EntryCommentVO entryCommentVO = new EntryCommentVO();
-        BeanUtils.copyProperties(entryComment,entryCommentVO);
+        BeanUtils.copyProperties(entryComment, entryCommentVO);
 
         entryCommentVO.setReplyComment(replyComment);
         entryCommentVO.setUserInfo(userVO);

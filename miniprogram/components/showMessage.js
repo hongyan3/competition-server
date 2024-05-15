@@ -1,4 +1,5 @@
 import Message from 'tdesign-miniprogram/message/index';
+
 let showMessage = {
     info(message) {
         Message.info({

@@ -1,5 +1,6 @@
-import { RadioValue } from '../radio/type';
-import { KeysType } from '../common/common';
+import {RadioValue} from '../radio/type';
+import {KeysType} from '../common/common';
+
 export interface TdRadioGroupProps<T = RadioValue> {
     placement?: {
         type: StringConstructor;
@@ -42,7 +43,9 @@ export interface TdRadioGroupProps<T = RadioValue> {
         value?: T;
     };
 }
+
 export declare type RadioOption = string | number | RadioOptionObj;
+
 export interface RadioOptionObj {
     label?: string;
     value?: string | number;

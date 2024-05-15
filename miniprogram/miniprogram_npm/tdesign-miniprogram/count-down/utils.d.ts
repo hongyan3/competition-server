@@ -5,6 +5,7 @@ export interface TimeData {
     ss: number;
     SSS: number;
 }
+
 export declare const TimeDataUnit: {
     DD: string;
     HH: string;

@@ -1,4 +1,5 @@
-import { SuperComponent, ComponentsOptionsType } from '../common/src/index';
+import {SuperComponent, ComponentsOptionsType} from '../common/src/index';
+
 export default class NoticeBar extends SuperComponent {
     externalClasses: string[];
     options: ComponentsOptionsType;

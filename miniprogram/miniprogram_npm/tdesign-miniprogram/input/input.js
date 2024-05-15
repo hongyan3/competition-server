@@ -1,14 +1,16 @@
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { SuperComponent, wxComponent } from '../common/src/index';
+import {SuperComponent, wxComponent} from '../common/src/index';
 import config from '../common/config';
 import props from './props';
-import { getCharacterLength, calcIcon } from '../common/utils';
-const { prefix } = config;
+import {getCharacterLength, calcIcon} from '../common/utils';
+
+const {prefix} = config;
 const name = `${prefix}-input`;
 let Input = class Input extends SuperComponent {
     constructor() {
@@ -35,7 +37,7 @@ let Input = class Input extends SuperComponent {
         };
         this.lifetimes = {
             ready() {
-                const { value } = this.properties;
+                const {value} = this.properties;
                 this.updateValue(value == null ? '' : value);
             },
         };
@@ -58,22 +60,20 @@ let Input = class Input extends SuperComponent {
         };
         this.methods = {
             updateValue(value) {
-                const { maxcharacter, maxlength } = this.properties;
+                const {maxcharacter, maxlength} = this.properties;
                 if (maxcharacter && maxcharacter > 0 && !Number.isNaN(maxcharacter)) {
-                    const { length, characters } = getCharacterLength('maxcharacter', value, maxcharacter);
+                    const {length, characters} = getCharacterLength('maxcharacter', value, maxcharacter);
                     this.setData({
                         value: characters,
                         count: length,
                     });
-                }
-                else if (maxlength > 0 && !Number.isNaN(maxlength)) {
-                    const { length, characters } = getCharacterLength('maxlength', value, maxlength);
+                } else if (maxlength > 0 && !Number.isNaN(maxlength)) {
+                    const {length, characters} = getCharacterLength('maxlength', value, maxlength);
                     this.setData({
                         value: characters,
                         count: length,
                     });
-                }
-                else {
+                } else {
                     this.setData({
                         value,
                         count: value ? String(value).length : 0,
@@ -81,9 +81,9 @@ let Input = class Input extends SuperComponent {
                 }
             },
             onInput(e) {
-                const { value, cursor, keyCode } = e.detail;
+                const {value, cursor, keyCode} = e.detail;
                 this.updateValue(value);
-                this.triggerEvent('change', { value: this.data.value, cursor, keyCode });
+                this.triggerEvent('change', {value: this.data.value, cursor, keyCode});
             },
             onFocus(e) {
                 this.triggerEvent('focus', e.detail);
@@ -95,14 +95,14 @@ let Input = class Input extends SuperComponent {
                 this.triggerEvent('enter', e.detail);
             },
             onSuffixClick() {
-                this.triggerEvent('click', { trigger: 'suffix' });
+                this.triggerEvent('click', {trigger: 'suffix'});
             },
             onSuffixIconClick() {
-                this.triggerEvent('click', { trigger: 'suffix-icon' });
+                this.triggerEvent('click', {trigger: 'suffix-icon'});
             },
             clearInput(e) {
                 this.triggerEvent('clear', e.detail);
-                this.setData({ value: '' });
+                this.setData({value: ''});
             },
             onKeyboardHeightChange(e) {
                 this.triggerEvent('keyboardheightchange', e.detail);

@@ -33,13 +33,14 @@ public class FileController {
     UserService userService;
     @Resource
     FileUploadService fileUploadService;
+
     @PostMapping("/upload")
     public BaseResponse<String> UploadFile(@RequestPart("file") MultipartFile multipartFile, @RequestPart("business") String business, HttpServletRequest request) {
         FileUploadBusinessEnum fileUploadEnum = FileUploadBusinessEnum.getEnumByValue(business);
         if (fileUploadEnum == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        validFile(multipartFile,fileUploadEnum);
+        validFile(multipartFile, fileUploadEnum);
         User loginUser = userService.getLoginUser(request);
         // 文件目录：根据业务、用户来划分
         String uuid = RandomStringUtils.randomAlphanumeric(8);
@@ -47,10 +48,10 @@ public class FileController {
         String filePath = String.format("/%s/%s/%s", fileUploadEnum.getValue(), loginUser.getId(), fileName);
         File file = null;
         try {
-            file = File.createTempFile(filePath,null);
+            file = File.createTempFile(filePath, null);
             multipartFile.transferTo(file);
-            fileUploadService.UploadFileToLocal(filePath,file);
-            return ResultUtils.success(FileConstant.File_Host+filePath);
+            fileUploadService.UploadFileToLocal(filePath, file);
+            return ResultUtils.success(FileConstant.File_Host + filePath);
         } catch (Exception e) {
             log.error("file upload error, filepath = " + filePath, e);
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "上传失败");
@@ -64,6 +65,7 @@ public class FileController {
             }
         }
     }
+
     /**
      * 校验文件
      *
@@ -78,7 +80,7 @@ public class FileController {
         if (fileSuffix != null) {
             fileSuffix = Strings.toRootLowerCase(fileSuffix);
         }
-        switch(fileUploadEnum) {
+        switch (fileUploadEnum) {
             case USER_AVATAR:
             case ENTRY_IMAGE:
                 if (fileSize > 1024 * 1024L) {
@@ -100,7 +102,7 @@ public class FileController {
                 if (fileSize > 1024 * 1024L * 10) {
                     throw new BusinessException(ErrorCode.PARAMS_ERROR, "文件大小不能超过 10M");
                 }
-                if (!Arrays.asList("wav", "mp3", "flac","wma").contains(fileSuffix)) {
+                if (!Arrays.asList("wav", "mp3", "flac", "wma").contains(fileSuffix)) {
                     throw new BusinessException(ErrorCode.PARAMS_ERROR, "文件类型错误");
                 }
                 break;
@@ -108,7 +110,7 @@ public class FileController {
                 if (fileSize > 1024 * 1024L * 10) {
                     throw new BusinessException(ErrorCode.PARAMS_ERROR, "文件大小不能超过 10M");
                 }
-                if (!Arrays.asList("zip", "rar", "7z","tar","pdf","doc","docx","ppt","xls","xlsx").contains(fileSuffix)) {
+                if (!Arrays.asList("zip", "rar", "7z", "tar", "pdf", "doc", "docx", "ppt", "xls", "xlsx").contains(fileSuffix)) {
                     throw new BusinessException(ErrorCode.PARAMS_ERROR, "文件类型错误");
                 }
                 break;

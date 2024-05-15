@@ -11,41 +11,50 @@ import java.util.List;
 
 /**
  * 参赛作品
+ *
  * @TableName entry
  */
-@TableName(value ="entry")
+@TableName(value = "entry")
 @Data
 public class EntryVO implements Serializable {
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
     /**
      * 作品ID
      */
     private Long id;
-
     /**
      * 作品名称
      */
     private String entryName;
-
     /**
      * 作品描述
      */
     private String description;
-
     /**
-     * 参赛学院
+     * 参赛学院ID
      */
-    private String college;
-
+    private Long collegeId;
+    /**
+     * 参赛学院名称
+     */
+    private String collegeName;
+    /**
+     * 作品状态 0-待审核 1-已审核
+     */
+    private Integer status;
+    /**
+     * 状态备注
+     */
+    private String statusRemarks;
     /**
      * 创建者信息
      */
     private UserVO creatorInfo;
-
     /**
      * 成员列表
      */
     private List<UserVO> members;
-
     /**
      * 资料列表
      */
@@ -54,12 +63,8 @@ public class EntryVO implements Serializable {
      * 创建时间
      */
     private Date createTime;
-
     /**
      * 更新时间
      */
     private Date updateTime;
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

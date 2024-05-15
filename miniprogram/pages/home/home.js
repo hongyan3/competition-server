@@ -1,20 +1,21 @@
 // pages/home/home.js
 import {User} from '@utils/api'
 import showMessage from '~/components/showMessage'
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-      userInfo: {}
+        userInfo: {}
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
- 
+
     },
 
     /**
@@ -28,7 +29,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-      this.getLoginUser()
+        this.getLoginUser()
     },
 
     /**
@@ -66,31 +67,31 @@ Page({
 
     },
     getLoginUser() {
-      User.getLoginUser().then(res => {
-        if (res.data.code == 0){
-          this.setData({
-            userInfo: res.data.data
-          })
-          wx.setStorageSync('userInfo', res.data.data)
-        } else {
-          showMessage.warning(res.data.message)
-        }
-      })
+        User.getLoginUser().then(res => {
+            if (res.data.code == 0) {
+                this.setData({
+                    userInfo: res.data.data
+                })
+                wx.setStorageSync('userInfo', res.data.data)
+            } else {
+                showMessage.warning(res.data.message)
+            }
+        })
     },
     logout() {
-      User.logout().then(res => {
-        wx.clearStorageSync()
-        showMessage.success('退出登录成功')
-        setTimeout(() => {
-          wx.navigateTo({
-            url: '/pages/login/login',
-          })
-        },1000)
-      })
+        User.logout().then(res => {
+            wx.clearStorageSync()
+            showMessage.success('退出登录成功')
+            setTimeout(() => {
+                wx.navigateTo({
+                    url: '/pages/login/login',
+                })
+            }, 1000)
+        })
     },
     toUpdateUser() {
-      wx.navigateTo({
-        url: '/pages/updateUser/updateUser',
-      })
+        wx.navigateTo({
+            url: '/pages/updateUser/updateUser',
+        })
     }
 })

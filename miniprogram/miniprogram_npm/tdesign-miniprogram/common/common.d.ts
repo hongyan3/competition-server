@@ -1,7 +1,9 @@
 export declare type Classes = Array<string>;
+
 export interface Styles {
     [css: string]: string | number;
 }
+
 export declare type OptionData = {
     label?: string;
     value?: string | number;
@@ -18,13 +20,16 @@ export declare type ClassName = {
     [className: string]: any;
 } | ClassName[] | string;
 export declare type CSSSelector = string;
+
 export interface KeysType {
     value?: string;
     label?: string;
 }
+
 export interface HTMLElementAttributes {
     [css: string]: string;
 }
+
 export interface InfinityScroll {
     bufferSize?: number;
     isFixedRowHeight?: boolean;
@@ -32,4 +37,5 @@ export interface InfinityScroll {
     threshold?: number;
     type: 'lazy' | 'virtual';
 }
+
 export declare type TScroll = InfinityScroll;

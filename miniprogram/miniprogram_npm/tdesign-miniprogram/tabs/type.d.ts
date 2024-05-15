@@ -1,4 +1,5 @@
-import { StickyProps } from '../sticky/index';
+import {StickyProps} from '../sticky/index';
+
 export interface TdTabsProps {
     animation?: {
         type: ObjectConstructor;
@@ -45,6 +46,7 @@ export interface TdTabsProps {
         value?: TabValue;
     };
 }
+
 export declare type TabAnimation = {
     duration: number;
 } & Record<string, any>;

@@ -28,7 +28,9 @@ export interface TdStepItemProps {
         value?: string;
     };
 }
+
 export declare type StepStatus = 'default' | 'process' | 'finish' | 'error';
+
 export interface SubStepItem {
     status: StepStatus;
     title: string;

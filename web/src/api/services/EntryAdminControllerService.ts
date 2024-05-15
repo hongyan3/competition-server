@@ -2,13 +2,14 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { BaseResponse_boolean_ } from '../models/BaseResponse_boolean_';
-import type { BaseResponse_long_ } from '../models/BaseResponse_long_';
-import type { EntryAddRequest } from '../models/EntryAddRequest';
-import type { EntryUpdateRequest } from '../models/EntryUpdateRequest';
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type {BaseResponse_boolean_} from '../models/BaseResponse_boolean_';
+import type {BaseResponse_long_} from '../models/BaseResponse_long_';
+import type {EntryAddRequest} from '../models/EntryAddRequest';
+import type {EntryUpdateRequest} from '../models/EntryUpdateRequest';
+import type {CancelablePromise} from '../core/CancelablePromise';
+import {OpenAPI} from '../core/OpenAPI';
+import {request as __request} from '../core/request';
+
 export class EntryAdminControllerService {
     /**
      * UpdateEntry
@@ -32,6 +33,7 @@ export class EntryAdminControllerService {
             },
         });
     }
+
     /**
      * addEntry
      * @param requestBody
@@ -54,6 +56,7 @@ export class EntryAdminControllerService {
             },
         });
     }
+
     /**
      * DeleteEntry
      * @param entryId entryId

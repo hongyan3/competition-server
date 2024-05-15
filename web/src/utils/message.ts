@@ -1,7 +1,7 @@
 import {Notification} from "@arco-design/web-vue";
 
 export const message = {
-    success: (msg: string)=> {
+    success: (msg: string) => {
         Notification.success(msg)
     },
     error: (msg: string) => {

@@ -4,11 +4,13 @@ export declare enum MessageType {
     warning = "warning",
     error = "error"
 }
+
 export interface MessageMarquee {
     speed?: number;
     loop?: number;
     delay?: number;
 }
+
 export interface MessageProps {
     visible?: boolean;
     content: string;

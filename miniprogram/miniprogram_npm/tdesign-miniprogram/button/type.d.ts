@@ -1,5 +1,6 @@
-import { LoadingProps } from '../loading/index';
-import { SizeEnum } from '../common/common';
+import {LoadingProps} from '../loading/index';
+import {SizeEnum} from '../common/common';
+
 export interface TdButtonProps {
     block?: {
         type: BooleanConstructor;

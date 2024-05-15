@@ -1,4 +1,5 @@
-import { SuperComponent } from '../common/src/index';
+import {SuperComponent} from '../common/src/index';
+
 export default class TreeSelect extends SuperComponent {
     externalClasses: string[];
     options: {

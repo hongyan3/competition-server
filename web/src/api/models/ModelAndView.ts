@@ -2,7 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { View } from './View';
+import type {View} from './View';
+
 export type ModelAndView = {
     empty?: boolean;
     model?: Record<string, any>;

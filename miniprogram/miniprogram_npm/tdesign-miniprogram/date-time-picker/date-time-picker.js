@@ -1,15 +1,17 @@
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import dayjs from 'dayjs';
 import config from '../common/config';
-import { SuperComponent, wxComponent } from '../common/src/index';
+import {SuperComponent, wxComponent} from '../common/src/index';
 import defaultLocale from './locale/zh';
 import props from './props';
-const { prefix } = config;
+
+const {prefix} = config;
 const name = `${prefix}-date-time-picker`;
 var ModeItem;
 (function (ModeItem) {
@@ -63,14 +65,14 @@ let DateTimePicker = class DateTimePicker extends SuperComponent {
         this.methods = {
             updateColumns() {
                 this.date = this.getParseDate();
-                const { columns, columnsValue } = this.getValueCols();
+                const {columns, columnsValue} = this.getValueCols();
                 this.setData({
                     columns,
                     columnsValue,
                 });
             },
             getParseDate() {
-                const { value, defaultValue } = this.properties;
+                const {value, defaultValue} = this.properties;
                 const minDate = this.getMinDate();
                 const isTimeMode = this.isTimeMode();
                 let currentValue = value || defaultValue;
@@ -83,11 +85,11 @@ let DateTimePicker = class DateTimePicker extends SuperComponent {
                 return isDateValid ? parseDate : minDate;
             },
             getMinDate() {
-                const { start } = this.properties;
+                const {start} = this.properties;
                 return start ? dayjs(start) : DEFAULT_MIN_DATE;
             },
             getMaxDate() {
-                const { end } = this.properties;
+                const {end} = this.properties;
                 return end ? dayjs(end) : DEFAULT_MAX_DATE;
             },
             getDateRect(type = 'default') {
@@ -98,7 +100,10 @@ let DateTimePicker = class DateTimePicker extends SuperComponent {
                 };
                 const date = this[map[type]]();
                 const keys = ['year', 'month', 'date', 'hour', 'minute', 'second'];
-                return keys.map((k) => { var _a; return (_a = date[k]) === null || _a === void 0 ? void 0 : _a.call(date); });
+                return keys.map((k) => {
+                    var _a;
+                    return (_a = date[k]) === null || _a === void 0 ? void 0 : _a.call(date);
+                });
             },
             getDate() {
                 return this.clipDate((this === null || this === void 0 ? void 0 : this.date) || DEFAULT_MIN_DATE);
@@ -121,7 +126,7 @@ let DateTimePicker = class DateTimePicker extends SuperComponent {
                 return tempDate.month(month);
             },
             getColumnOptions() {
-                const { fullModes } = this.data;
+                const {fullModes} = this.data;
                 const columnOptions = [];
                 fullModes === null || fullModes === void 0 ? void 0 : fullModes.forEach((mode) => {
                     const columnOption = this.getOptionByType(mode);
@@ -130,7 +135,7 @@ let DateTimePicker = class DateTimePicker extends SuperComponent {
                 return columnOptions;
             },
             getOptionByType(type) {
-                const { locale } = this.data;
+                const {locale} = this.data;
                 const options = [];
                 const minEdge = this.getOptionEdge('min', type);
                 const maxEdge = this.getOptionEdge('max', type);
@@ -144,8 +149,8 @@ let DateTimePicker = class DateTimePicker extends SuperComponent {
                 return options;
             },
             getYearOptions(dateParams) {
-                const { locale } = this.data;
-                const { minDateYear, maxDateYear } = dateParams;
+                const {locale} = this.data;
+                const {minDateYear, maxDateYear} = dateParams;
                 const years = [];
                 for (let i = minDateYear; i <= maxDateYear; i += 1) {
                     years.push({
@@ -175,7 +180,7 @@ let DateTimePicker = class DateTimePicker extends SuperComponent {
                 return edge[type][minOrMax === 'min' ? 0 : 1];
             },
             getMonthOptions() {
-                const { locale } = this.data;
+                const {locale} = this.data;
                 const months = [];
                 const minMonth = this.getOptionEdge('min', 'month');
                 const maxMonth = this.getOptionEdge('max', 'month');
@@ -188,7 +193,7 @@ let DateTimePicker = class DateTimePicker extends SuperComponent {
                 return months;
             },
             getDayOptions() {
-                const { locale } = this.data;
+                const {locale} = this.data;
                 const days = [];
                 const minDay = this.getOptionEdge('min', 'date');
                 const maxDay = this.getOptionEdge('max', 'date');
@@ -201,7 +206,7 @@ let DateTimePicker = class DateTimePicker extends SuperComponent {
                 return days;
             },
             getHourOptions() {
-                const { locale } = this.data;
+                const {locale} = this.data;
                 const hours = [];
                 const minHour = this.getOptionEdge('min', 'hour');
                 const maxHour = this.getOptionEdge('max', 'hour');
@@ -214,7 +219,7 @@ let DateTimePicker = class DateTimePicker extends SuperComponent {
                 return hours;
             },
             getMinuteOptions() {
-                const { locale } = this.data;
+                const {locale} = this.data;
                 const minutes = [];
                 const minMinute = this.getOptionEdge('min', 'minute');
                 const maxMinute = this.getOptionEdge('max', 'minute');
@@ -233,7 +238,7 @@ let DateTimePicker = class DateTimePicker extends SuperComponent {
                 };
             },
             getColumnsValue() {
-                const { fullModes } = this.data;
+                const {fullModes} = this.data;
                 const date = this.getDate();
                 const columnsValue = [];
                 fullModes === null || fullModes === void 0 ? void 0 : fullModes.forEach((mode) => {
@@ -268,27 +273,27 @@ let DateTimePicker = class DateTimePicker extends SuperComponent {
                 return this.clipDate(newValue);
             },
             onColumnChange(e) {
-                const { value, column } = e === null || e === void 0 ? void 0 : e.detail;
-                const { fullModes, format } = this.data;
+                const {value, column} = e === null || e === void 0 ? void 0 : e.detail;
+                const {fullModes, format} = this.data;
                 const columnValue = value === null || value === void 0 ? void 0 : value[column];
                 const columnType = fullModes === null || fullModes === void 0 ? void 0 : fullModes[column];
                 const newValue = this.getNewDate(parseInt(columnValue, 10), columnType);
                 this.date = newValue;
-                const { columns, columnsValue } = this.getValueCols();
+                const {columns, columnsValue} = this.getValueCols();
                 this.setData({
                     columns,
                     columnsValue,
                 });
                 const date = this.getDate();
                 const pickValue = format ? date.format(format) : date.valueOf();
-                this.triggerEvent('pick', { value: pickValue });
+                this.triggerEvent('pick', {value: pickValue});
             },
             onConfirm() {
-                const { format } = this.properties;
+                const {format} = this.properties;
                 const date = this.getDate();
                 const value = format ? date.format(format) : date.valueOf();
-                this._trigger('change', { value });
-                this.triggerEvent('confirm', { value });
+                this._trigger('change', {value});
+                this.triggerEvent('confirm', {value});
                 this.resetColumns();
             },
             onCancel() {
@@ -301,13 +306,13 @@ let DateTimePicker = class DateTimePicker extends SuperComponent {
                 }
             },
             onClose(e) {
-                const { trigger } = e.detail;
-                this.triggerEvent('close', { trigger });
+                const {trigger} = e.detail;
+                this.triggerEvent('close', {trigger});
             },
             resetColumns() {
                 const parseDate = this.getParseDate();
                 this.date = parseDate;
-                const { columns, columnsValue } = this.getValueCols();
+                const {columns, columnsValue} = this.getValueCols();
                 this.setData({
                     columns,
                     columnsValue,
@@ -315,6 +320,7 @@ let DateTimePicker = class DateTimePicker extends SuperComponent {
             },
         };
     }
+
     getFullModeArray(mode) {
         if (typeof mode === 'string' || mode instanceof String) {
             return this.getFullModeByModeString(mode, FULL_MODES);
@@ -330,6 +336,7 @@ let DateTimePicker = class DateTimePicker extends SuperComponent {
             }
         }
     }
+
     getFullModeByModeString(modeString, matchModes) {
         if (!modeString) {
             return [];
@@ -337,8 +344,9 @@ let DateTimePicker = class DateTimePicker extends SuperComponent {
         const endIndex = matchModes === null || matchModes === void 0 ? void 0 : matchModes.findIndex((mode) => modeString === mode);
         return matchModes === null || matchModes === void 0 ? void 0 : matchModes.slice(0, endIndex + 1);
     }
+
     isTimeMode() {
-        const { fullModes } = this.data;
+        const {fullModes} = this.data;
         return fullModes[0] === ModeItem.HOUR;
     }
 };

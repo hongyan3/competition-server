@@ -1,4 +1,5 @@
-import { RelationsOptions, SuperComponent } from '../common/src/index';
+import {RelationsOptions, SuperComponent} from '../common/src/index';
+
 export default class IndexesAnchor extends SuperComponent {
     externalClasses: string[];
     properties: import("./type").TdIndexesAnchorProps;

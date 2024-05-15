@@ -44,6 +44,7 @@ export interface TdNoticeBarProps {
         value?: boolean;
     };
 }
+
 export interface DrawMarquee {
     speed?: number;
     loop?: number;

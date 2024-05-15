@@ -1,8 +1,10 @@
 /// <reference types="miniprogram-api-typings" />
-import { SuperComponent } from '../common/src/index';
-import { TdCascaderProps } from './type';
+import {SuperComponent} from '../common/src/index';
+import {TdCascaderProps} from './type';
+
 export interface CascaderProps extends TdCascaderProps {
 }
+
 export default class Cascader extends SuperComponent {
     externalClasses: string[];
     options: WechatMiniprogram.Component.ComponentOptions;

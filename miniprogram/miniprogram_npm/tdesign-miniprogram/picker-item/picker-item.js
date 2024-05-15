@@ -1,17 +1,19 @@
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { SuperComponent, wxComponent } from '../common/src/index';
+import {SuperComponent, wxComponent} from '../common/src/index';
 import config from '../common/config';
 import props from './props';
-const { prefix } = config;
+
+const {prefix} = config;
 const name = `${prefix}-picker-item`;
 const itemHeight = 80;
 const DefaultDuration = 240;
-const { windowWidth } = wx.getSystemInfoSync();
+const {windowWidth} = wx.getSystemInfoSync();
 const rpx2px = (rpx) => Math.floor((windowWidth * rpx) / 750);
 const range = function (num, min, max) {
     return Math.min(Math.max(num, min), max);
@@ -43,10 +45,10 @@ let PickerItem = class PickerItem extends SuperComponent {
             onTouchStart(event) {
                 this.StartY = event.touches[0].clientY;
                 this.StartOffset = this.data.offset;
-                this.setData({ duration: 0 });
+                this.setData({duration: 0});
             },
             onTouchMove(event) {
-                const { StartY, StartOffset, itemHeight } = this;
+                const {StartY, StartOffset, itemHeight} = this;
                 const touchDeltaY = event.touches[0].clientY - StartY;
                 const deltaY = this.calculateViewDeltaY(touchDeltaY);
                 this.setData({
@@ -55,8 +57,8 @@ let PickerItem = class PickerItem extends SuperComponent {
                 });
             },
             onTouchEnd() {
-                const { offset } = this.data;
-                const { options } = this.properties;
+                const {offset} = this.data;
+                const {options} = this.properties;
                 if (offset === this.StartOffset) {
                     return;
                 }
@@ -81,7 +83,7 @@ let PickerItem = class PickerItem extends SuperComponent {
             },
             update() {
                 var _a, _b;
-                const { options, value } = this.data;
+                const {options, value} = this.data;
                 const index = options.findIndex((item) => item.value === value);
                 const selectedIndex = index > 0 ? index : 0;
                 this.setData({
@@ -101,9 +103,11 @@ let PickerItem = class PickerItem extends SuperComponent {
             },
         };
     }
+
     calculateViewDeltaY(touchDeltaY) {
         return Math.abs(touchDeltaY) > itemHeight ? 1.2 * touchDeltaY : touchDeltaY;
     }
+
     created() {
         this.StartY = 0;
         this.StartOffset = 0;

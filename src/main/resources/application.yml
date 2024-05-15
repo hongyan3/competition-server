@@ -7,7 +7,7 @@ server:
       cookie:
         max-age: 2592000
 spring:
-#  数据库配置
+  #  数据库配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/competition
@@ -19,7 +19,7 @@ spring:
   session:
     # 30 天过期
     timeout: 86400
-#  全局日期格式化返回
+  #  全局日期格式化返回
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
