@@ -76,10 +76,11 @@ export let Comment = {
     getCommentList(options = {
         entryId: 0,
         current: 1,
-        pageSize: 10
+        pageSize: 10,
+        commentType: 1
     }) {
         return request({
-            url: `/api/entry/comment?entryId=${options.entryId}&current=${options.current}&pageSize=${options.pageSize}&sortField=create_time&sortOrer=DESC`,
+            url: `/api/entry/comment?entryId=${options.entryId}&current=${options.current}&pageSize=${options.pageSize}&sortField=create_time&sortOrer=DESC&commentType=${options.commentType}`,
         })
     },
     addComment(form) {

@@ -2,9 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type {EntryCommentVO} from './EntryCommentVO';
-import type {OrderItem} from './OrderItem';
-
+import type { EntryCommentVO } from './EntryCommentVO';
+import type { OrderItem } from './OrderItem';
 export type Page_EntryCommentVO_ = {
     countId?: string;
     current?: number;

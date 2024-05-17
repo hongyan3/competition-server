@@ -2,16 +2,15 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type {BaseResponse_boolean_} from '../models/BaseResponse_boolean_';
-import type {BaseResponse_long_} from '../models/BaseResponse_long_';
-import type {BaseResponse_Page_User_} from '../models/BaseResponse_Page_User_';
-import type {BaseResponse_User_} from '../models/BaseResponse_User_';
-import type {UserAddRequest} from '../models/UserAddRequest';
-import type {UserUpdateRequest} from '../models/UserUpdateRequest';
-import type {CancelablePromise} from '../core/CancelablePromise';
-import {OpenAPI} from '../core/OpenAPI';
-import {request as __request} from '../core/request';
-
+import type { BaseResponse_boolean_ } from '../models/BaseResponse_boolean_';
+import type { BaseResponse_long_ } from '../models/BaseResponse_long_';
+import type { BaseResponse_Page_User_ } from '../models/BaseResponse_Page_User_';
+import type { BaseResponse_User_ } from '../models/BaseResponse_User_';
+import type { UserAddRequest } from '../models/UserAddRequest';
+import type { UserUpdateRequest } from '../models/UserUpdateRequest';
+import type { CancelablePromise } from '@/api/core/CancelablePromise';
+import { OpenAPI } from '@/api/core/OpenAPI';
+import { request as __request } from '@/api/core/request';
 export class UserAdminControllerService {
     /**
      * userList
@@ -71,7 +70,6 @@ export class UserAdminControllerService {
             },
         });
     }
-
     /**
      * updateUser
      * @param requestBody
@@ -94,7 +92,6 @@ export class UserAdminControllerService {
             },
         });
     }
-
     /**
      * addUser
      * @param requestBody
@@ -117,7 +114,6 @@ export class UserAdminControllerService {
             },
         });
     }
-
     /**
      * getUserById
      * @param userId userId
@@ -140,7 +136,6 @@ export class UserAdminControllerService {
             },
         });
     }
-
     /**
      * deleteUser
      * @param userId userId

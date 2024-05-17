@@ -2,11 +2,11 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type {EntrySource} from './EntrySource';
-import type {UserVO} from './UserVO';
-
+import type { EntrySource } from './EntrySource';
+import type { UserVO } from './UserVO';
 export type EntryVO = {
-    college?: string;
+    collegeId?: number;
+    collegeName?: string;
     createTime?: string;
     creatorInfo?: UserVO;
     description?: string;
@@ -14,6 +14,8 @@ export type EntryVO = {
     id?: number;
     members?: Array<UserVO>;
     sources?: Array<EntrySource>;
+    status?: number;
+    statusRemarks?: string;
     updateTime?: string;
 };
 

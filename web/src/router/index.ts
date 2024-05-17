@@ -42,6 +42,14 @@ const router = createRouter({
                     component: () => import('@/views/entry/entry_member/index.vue')
                 },
                 {
+                    path: '/entry_info',
+                    name: 'entry_info',
+                    meta: {
+                        title: '作品详情'
+                    },
+                    component: () => import('@/views/entry/entry_info/index.vue')
+                },
+                {
                     path: '/user_center',
                     name: 'user_center',
                     meta: {
@@ -72,6 +80,22 @@ const router = createRouter({
                                 title: '作品管理'
                             },
                             component: () => import('@/views/admin/entry/index.vue')
+                        },
+                        {
+                            path: '/admin/review',
+                            name: '作品审核',
+                            meta: {
+                                title: '作品审核'
+                            },
+                            component: () => import('@/views/admin/review/index.vue')
+                        },
+                        {
+                            path: '/admin/college',
+                            name: '学院管理',
+                            meta: {
+                                title: '学院管理'
+                            },
+                            component: () => import('@/views/admin/college/index.vue')
                         }
                     ]
                 }

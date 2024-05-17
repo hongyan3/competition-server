@@ -2,15 +2,10 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type EntryComment = {
-    commentType?: number;
-    content?: string;
+export type CollegeVO = {
+    collegeName?: string;
     createTime?: string;
-    entryId?: number;
     id?: number;
-    isDelete?: number;
-    replyId?: number;
     updateTime?: string;
-    userId?: number;
 };
 

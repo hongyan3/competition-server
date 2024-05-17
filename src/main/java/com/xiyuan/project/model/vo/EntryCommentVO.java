@@ -7,6 +7,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 作品评论
@@ -41,7 +42,11 @@ public class EntryCommentVO implements Serializable {
     /**
      * 回复的评论ID
      */
-    private EntryComment replyComment;
+    private Long replyId;
+    /**
+     * 回复的评论
+     */
+    private List<EntryCommentVO> replyList;
     /**
      * 创建时间
      */

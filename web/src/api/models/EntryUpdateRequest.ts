@@ -7,5 +7,7 @@ export type EntryUpdateRequest = {
     description?: string;
     entryName?: string;
     id?: number;
+    status?: number;
+    statusRemarks?: string;
 };
 

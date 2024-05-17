@@ -2,16 +2,16 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { CollegeVO } from './CollegeVO';
 import type { OrderItem } from './OrderItem';
-import type { User } from './User';
-export type Page_User_ = {
+export type Page_CollegeVO_ = {
     countId?: string;
     current?: number;
     maxLimit?: number;
     optimizeCountSql?: boolean;
     orders?: Array<OrderItem>;
     pages?: number;
-    records?: Array<User>;
+    records?: Array<CollegeVO>;
     searchCount?: boolean;
     size?: number;
     total?: number;

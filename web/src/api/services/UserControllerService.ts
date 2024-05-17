@@ -2,18 +2,17 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type {BaseResponse_boolean_} from '../models/BaseResponse_boolean_';
-import type {BaseResponse_long_} from '../models/BaseResponse_long_';
-import type {BaseResponse_Page_EntryVO_} from '../models/BaseResponse_Page_EntryVO_';
-import type {BaseResponse_Page_UserVO_} from '../models/BaseResponse_Page_UserVO_';
-import type {BaseResponse_UserVO_} from '../models/BaseResponse_UserVO_';
-import type {UserEditRequest} from '../models/UserEditRequest';
-import type {UserLoginRequest} from '../models/UserLoginRequest';
-import type {UserRegisterRequest} from '../models/UserRegisterRequest';
-import type {CancelablePromise} from '../core/CancelablePromise';
-import {OpenAPI} from '../core/OpenAPI';
-import {request as __request} from '../core/request';
-
+import type { BaseResponse_boolean_ } from '../models/BaseResponse_boolean_';
+import type { BaseResponse_long_ } from '../models/BaseResponse_long_';
+import type { BaseResponse_Page_EntryVO_ } from '../models/BaseResponse_Page_EntryVO_';
+import type { BaseResponse_Page_UserVO_ } from '../models/BaseResponse_Page_UserVO_';
+import type { BaseResponse_UserVO_ } from '../models/BaseResponse_UserVO_';
+import type { UserEditRequest } from '../models/UserEditRequest';
+import type { UserLoginRequest } from '../models/UserLoginRequest';
+import type { UserRegisterRequest } from '../models/UserRegisterRequest';
+import type { CancelablePromise } from '@/api/core/CancelablePromise';
+import { OpenAPI } from '@/api/core/OpenAPI';
+import { request as __request } from '@/api/core/request';
 export class UserControllerService {
     /**
      * userList
@@ -73,7 +72,6 @@ export class UserControllerService {
             },
         });
     }
-
     /**
      * updateUser
      * @param requestBody
@@ -96,7 +94,6 @@ export class UserControllerService {
             },
         });
     }
-
     /**
      * getUserEntryList
      * @param current
@@ -128,7 +125,6 @@ export class UserControllerService {
             },
         });
     }
-
     /**
      * getLoginUser
      * @returns BaseResponse_UserVO_ OK
@@ -145,7 +141,6 @@ export class UserControllerService {
             },
         });
     }
-
     /**
      * userLogin
      * @param requestBody
@@ -168,7 +163,6 @@ export class UserControllerService {
             },
         });
     }
-
     /**
      * userLogout
      * @returns BaseResponse_boolean_ OK
@@ -186,7 +180,6 @@ export class UserControllerService {
             },
         });
     }
-
     /**
      * userRegister
      * @param requestBody

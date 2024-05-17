@@ -151,7 +151,8 @@ Page({
         Comment.getCommentList({
             current,
             pageSize,
-            entryId: this.data.entryId
+            entryId: this.data.entryId,
+            commentType: 1
         }).then((res) => {
             console.log(res.data);
             this.setData({

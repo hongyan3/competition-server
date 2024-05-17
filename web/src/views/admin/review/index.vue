@@ -1,52 +1,24 @@
 <template>
   <div class="enrty-list-conatiner">
-    <div class="button-area">
-      <a-button type="primary" @click="addModalVisible = true">创建作品</a-button>
-    </div>
     <a-table :columns="columns" :data="data.entryList" :pagination="{
       total: data.totle,
       pageSize: data.size,
       showTotal: true
-    }" @page-change="pageChangeHandle" @row-dblclick="toEntryInfoPage">
+    }" @page-change="pageChangeHandle">
       <template #optional="{ record }">
         <a-button type="primary" @click="toFileSourceHandle(record.id)">附件</a-button>
         <a-button style="margin-left: 5px;" type="primary" @click="toMemberHandle(record.id)">成员</a-button>
-        <a-button style="margin-left: 5px;" type="primary" @click="showUpdateModal(record)">修改</a-button>
-        <a-button status="danger" style="margin-left: 5px;" type="primary" @click="deleteEntryHandle(record.id)">删除
-        </a-button>
+        <a-button style="margin-left: 5px;" type="primary" @click="showUpdateModal(record)">审核</a-button>
       </template>
     </a-table>
-    <!-- 新建模态框 -->
-    <a-modal v-model:visible="addModalVisible" title="创建作品" @cancel="addModalVisible = false" @ok="addEntryHandle">
-      <a-form :model="data.entryForm">
-        <a-form-item field="entryName" label="作品名称">
-          <a-input v-model="data.entryForm.entryName" placeholder="请输入作品名称" />
-        </a-form-item>
-        <a-form-item field="description" label="作品描述">
-          <a-textarea v-model="data.entryForm.description" placeholder="请输入作品描述" />
-        </a-form-item>
-        <a-form-item field="collegeId" label="参赛学院">
-          <a-select v-model="data.entryForm.collegeId" placeholder="请选择参赛学院" @click="getCollegeList">
-            <a-option v-for="college in data.collegeList" :value="college.id">{{ college.collegeName }}</a-option>
-          </a-select>
-          <!-- <a-input v-model="entryForm.collegeName"/> -->
-        </a-form-item>
-      </a-form>
-    </a-modal>
     <!-- 修改模态框 -->
-    <a-modal v-model:visible="updateModalVisible" title="修改作品" @cancel="updateModalVisible = false"
+    <a-modal v-model:visible="updateModalVisible" title="审核" @cancel="updateModalVisible = false"
       @ok="updateEntryHandle">
       <a-form :model="data.entryForm">
         <a-form-item field="id" label="作品ID">
           <a-input v-model="data.entryForm.id as any" disabled placeholder="作品ID" />
         </a-form-item>
-        <a-form-item field="entryName" label="作品名称">
-          <a-input v-model="data.entryForm.entryName" placeholder="请输入作品名称" />
-        </a-form-item>
-        <a-form-item field="description" label="作品描述">
-          <a-textarea v-model="data.entryForm.description" placeholder="请输入作品描述" />
-        </a-form-item>
-        <!-- <a-form-item field="status" label="审核状态">
+        <a-form-item field="status" label="审核状态">
           <a-select v-model="data.entryForm.status" placeholder="请选择审核状态" @click="getCollegeList">
             <a-option :value="0">待审核</a-option>
             <a-option :value="1">审核通过</a-option>
@@ -55,11 +27,6 @@
         </a-form-item>
         <a-form-item field="statusRemarks" label="审核备注">
           <a-input v-model="data.entryForm.statusRemarks" placeholder="请输入审核备注" />
-        </a-form-item> -->
-        <a-form-item field="collegeId" label="参赛学院">
-          <a-select v-model="data.entryForm.collegeId" placeholder="请选择参赛学院">
-            <a-option v-for="college in data.collegeList" :value="college.id">{{ college.collegeName }}</a-option>
-          </a-select>
         </a-form-item>
       </a-form>
     </a-modal>
@@ -132,16 +99,6 @@ const columns = [
   {
     title: '参赛学院',
     dataIndex: 'collegeName',
-    width: 200
-  },
-  {
-    title: '创建时间',
-    dataIndex: 'createTime',
-    width: 200
-  },
-  {
-    title: '更新时间',
-    dataIndex: 'updateTime',
     width: 200
   },
   {
@@ -235,15 +192,6 @@ const deleteEntryHandle = (id: number) => {
       message.success('删除成功')
     } else {
       message.error(res.message as string)
-    }
-  })
-}
-const toEntryInfoPage = (record: TableData, ev: Event) => {
-  const entryId = record.id
-  router.push({
-    path: '/entry_info',
-    query: {
-      entryId,
     }
   })
 }

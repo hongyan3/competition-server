@@ -2,8 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type {Page_EntryVO_} from './Page_EntryVO_';
-
+import type { Page_EntryVO_ } from './Page_EntryVO_';
 export type BaseResponse_Page_EntryVO_ = {
     code?: number;
     data?: Page_EntryVO_;

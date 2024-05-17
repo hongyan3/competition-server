@@ -18,7 +18,6 @@ import com.xiyuan.project.model.vo.EntryVO;
 import com.xiyuan.project.service.EntryService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -98,7 +97,7 @@ public class EntryAdminController {
         }
         Entry entry = new Entry();
         BeanUtils.copyProperties(request,entry);
-        boolean result = entryService.save(entry);
+        boolean result = entryService.updateById(entry);
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
         return ResultUtils.success(true);
     }

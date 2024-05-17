@@ -8,6 +8,8 @@ import com.xiyuan.project.constant.CommonConstant;
 import com.xiyuan.project.exception.BusinessException;
 import com.xiyuan.project.exception.ThrowUtils;
 import com.xiyuan.project.mapper.EntryCommentMapper;
+import com.xiyuan.project.mapper.EntryMapper;
+import com.xiyuan.project.model.dto.entry.EntryQueryRequest;
 import com.xiyuan.project.model.dto.entrycomment.EntryCommentQueryRequest;
 import com.xiyuan.project.model.entity.EntryComment;
 import com.xiyuan.project.model.entity.User;
@@ -37,6 +39,9 @@ public class EntryCommentServiceImpl extends ServiceImpl<EntryCommentMapper, Ent
 
     @Resource
     UserService userService;
+
+    @Resource
+    EntryCommentMapper entryCommentMapper;
 
     @Override
     public void validEntryComment(EntryComment entryComment, boolean add) {
@@ -70,19 +75,21 @@ public class EntryCommentServiceImpl extends ServiceImpl<EntryCommentMapper, Ent
             return null;
         }
         Long userId = entryComment.getUserId();
-        Long replyId = entryComment.getReplyId();
+        Integer commentType = entryComment.getCommentType();
+        Long id = entryComment.getId();
         // 获取评论人信息
         User user = userService.getById(userId);
         UserVO userVO = userService.getUserVO(user);
-        // 获取被评论内容
-        EntryComment replyComment = null;
-        if (replyId != null) {
-            replyComment = this.getById(replyId);
+        List<EntryCommentVO> replyList = null;
+        if (commentType != null && commentType == 1) {
+            QueryWrapper<EntryComment> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("reply_id",id);
+            replyList = entryCommentMapper.selectList(queryWrapper).stream().map(this::getEntryCommentVO).collect(Collectors.toList());
         }
+        // 获取被评论内容
         EntryCommentVO entryCommentVO = new EntryCommentVO();
         BeanUtils.copyProperties(entryComment, entryCommentVO);
-
-        entryCommentVO.setReplyComment(replyComment);
+        entryCommentVO.setReplyList(replyList);
         entryCommentVO.setUserInfo(userVO);
         return entryCommentVO;
     }

@@ -25,6 +25,8 @@
             <template #title>管理</template>
             <a-menu-item key="/admin/user">用户管理</a-menu-item>
             <a-menu-item key="/admin/entry">作品管理</a-menu-item>
+            <a-menu-item key="/admin/review">作品审核</a-menu-item>
+            <a-menu-item key="/admin/college">学院管理</a-menu-item>
           </a-sub-menu>
         </a-menu>
       </a-layout-sider>

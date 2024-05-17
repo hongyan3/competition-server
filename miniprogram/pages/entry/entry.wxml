@@ -4,12 +4,12 @@
     <view class="entry-container">
       <t-cell title="作品ID" hover note="{{entry.id}}" />
       <t-cell title="作品名称" hover note="{{entry.entryName}}" />
-      <t-cell title="作品描述" hover description="{{entry.description}}" />
+      <t-cell title="作品描述" hover description="{{entry.description}}" style="white-space: pre-line;"/>
       <t-cell title="创建人" hover>
         <t-avatar slot="note" shape="round" size="small" image="{{entry.creatorInfo.userAvatar}}" />
         <text slot="note" style="margin-left: 10rpx;font-size: 32rpx;">{{entry.creatorInfo.userName}}</text>
       </t-cell>
-      <t-cell title="学院" hover note="{{entry.college}}" />
+      <t-cell title="学院" hover note="{{entry.collegeName}}" />
       <t-cell title="创建时间" hover note="{{entry.createTime}}" />
     </view>
   </t-tab-panel>
@@ -83,11 +83,26 @@
           </view>
         </view>
         <view class="card-content" bind:tap="showComment" data-comment_id="{{comment.id}}">
-          <view class="reply-comment" wx:if="{{comment.commentType == 2}}">
-            <text>{{comment.replyComment.content}}</text>
-          </view>
           <view class="content">
             <text>{{comment.content}}</text>
+          </view>
+        </view>
+        <view class="reply-area">
+          <view class="source-list" wx:for="{{comment.replyList}}" wx:key="id" wx:for-item="reply" style="margin-left: 50rpx;">
+            <view class="card-avatar">
+          <view class="avatar">
+            <t-avatar shape="round" size="38px" image="{{reply.userInfo.userAvatar}}" />
+          </view>
+          <view class="nickName">
+            <text>{{reply.userInfo.userName}}</text>
+            <text>{{reply.createTime}}</text>
+          </view>
+        </view>
+        <view class="card-content" bind:tap="showComment" data-comment_id="{{comment.id}}">
+          <view class="content">
+            <text>{{reply.content}}</text>
+          </view>
+        </view>
           </view>
         </view>
       </view>

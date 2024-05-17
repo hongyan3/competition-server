@@ -2,6 +2,6 @@
   <t-search placeholder="搜索作品（标题、描述）" bind:submit="search" bind:clear="clearSearch" style="width: 92%;"/>
 </view>
 <view class="list-area">
-  <t-cell title="{{entry.entryName}}" wx:for="{{entryList}}" wx:key="id" wx:for-item="entry" description="{{entry.description}}" data-id="{{entry.id}}" bind:tap="toEntry" hover arrow />
+  <t-cell style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;" title="{{entry.entryName}}" wx:for="{{entryList}}" wx:key="id" wx:for-item="entry" description="{{entry.description}}" data-id="{{entry.id}}" bind:tap="toEntry" hover />
 </view>
 <t-message id="t-message" />

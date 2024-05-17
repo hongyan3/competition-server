@@ -3,7 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export type EntryEditRequest = {
-    college?: string;
+    collegeId?: number;
     description?: string;
     entryName?: string;
     id?: number;

@@ -9,7 +9,6 @@ export type User = {
     isDelete?: number;
     password?: string;
     role?: number;
-    schoolId?: number;
     status?: number;
     updateTime?: string;
     userAccount?: string;
