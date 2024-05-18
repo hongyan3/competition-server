@@ -34,6 +34,10 @@ Page({
 
     },
     login() {
+      if (this.data.loginForm.userAccount == '' || this.data.loginForm.userPassword == '') {
+          showMessage.warning('账号或密码不能为空')
+          return
+      }
         User.login(this.data.loginForm).then(res => {
             if (res.data.code == 0) {
                 showMessage.success('登录成功')

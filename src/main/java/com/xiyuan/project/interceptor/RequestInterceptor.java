@@ -22,7 +22,7 @@ public class RequestInterceptor {
      * 执行拦截
      */
     @Around("execution(* com.xiyuan.project.controller.*.*(..))")
-    public Object loginInterception(ProceedingJoinPoint point) throws Throwable {
+    public Object requestInterception(ProceedingJoinPoint point) throws Throwable {
         // 计时
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
