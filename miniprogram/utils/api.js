@@ -63,7 +63,7 @@ export let Entry = {
         searchValue: ''
     }) {
         return request({
-            url: options.searchValue != '' && options.searchValue != undefined ? `/api/entry?current=${options.current}&pageSize=${options.pageSize}&entryName=${options.searchValue}&description=${options.searchValue}` : `/api/entry?current=${options.current}&pageSize=${options.pageSize}`,
+            url: options.searchValue != '' && options.searchValue != undefined ? `/api/entry?current=${options.current}&pageSize=${options.pageSize}&entryName=${options.searchValue}&description=${options.searchValue}` : `/api/entry?current=${options.current}&pageSize=${options.pageSize}&status=1`,
         })
     },
     getEntryById(id) {

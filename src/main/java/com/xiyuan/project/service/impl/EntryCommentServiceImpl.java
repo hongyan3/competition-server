@@ -2,6 +2,7 @@ package com.xiyuan.project.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiyuan.project.common.ErrorCode;
 import com.xiyuan.project.constant.CommonConstant;
@@ -11,6 +12,7 @@ import com.xiyuan.project.mapper.EntryCommentMapper;
 import com.xiyuan.project.mapper.EntryMapper;
 import com.xiyuan.project.model.dto.entry.EntryQueryRequest;
 import com.xiyuan.project.model.dto.entrycomment.EntryCommentQueryRequest;
+import com.xiyuan.project.model.entity.Entry;
 import com.xiyuan.project.model.entity.EntryComment;
 import com.xiyuan.project.model.entity.User;
 import com.xiyuan.project.model.enums.EntryCommentTypeEnum;
@@ -20,6 +22,7 @@ import com.xiyuan.project.service.EntryCommentService;
 import com.xiyuan.project.service.UserService;
 import com.xiyuan.project.utils.SqlUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Test;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +42,9 @@ public class EntryCommentServiceImpl extends ServiceImpl<EntryCommentMapper, Ent
 
     @Resource
     UserService userService;
+
+    @Resource
+    EntryMapper entryMapper;
 
     @Resource
     EntryCommentMapper entryCommentMapper;

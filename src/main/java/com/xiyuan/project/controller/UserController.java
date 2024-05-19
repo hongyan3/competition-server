@@ -8,6 +8,7 @@ import com.xiyuan.project.common.PageRequest;
 import com.xiyuan.project.common.ResultUtils;
 import com.xiyuan.project.exception.BusinessException;
 import com.xiyuan.project.exception.ThrowUtils;
+import com.xiyuan.project.mapper.EntryMapper;
 import com.xiyuan.project.model.dto.user.UserEditRequest;
 import com.xiyuan.project.model.dto.user.UserLoginRequest;
 import com.xiyuan.project.model.dto.user.UserQueryRequest;
@@ -38,6 +39,8 @@ public class UserController {
     private UserService userService;
     @Resource
     private EntryService entryService;
+    @Resource
+    private EntryMapper entryMapper;
 
     /**
      * 用户注册
@@ -153,11 +156,12 @@ public class UserController {
         long current = pageRequest.getCurrent();
         long size = pageRequest.getPageSize();
         ThrowUtils.throwIf(size > 50, ErrorCode.PARAMS_ERROR);
+        Page<Entry> entryPage = new Page<>(current,size);
         QueryWrapper<Entry> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("creator_id", currentUser.getId());
-        Page<Entry> entryPage = entryService.page(new Page<>(current, size),
-                queryWrapper);
-        List<EntryVO> entryVOList = entryService.getEntryVO(entryPage.getRecords());
+        queryWrapper.eq("creator_id",currentUser.getId()).or()
+                .eq("member_id",currentUser.getId());
+        List<Entry> entryList = entryMapper.getEntryListWithMember(entryPage, queryWrapper);
+        List<EntryVO> entryVOList = entryService.getEntryVO(entryList);
         Page<EntryVO> voPage = new Page<>(current, size, entryPage.getTotal());
         voPage.setRecords(entryVOList);
         return ResultUtils.success(voPage);
