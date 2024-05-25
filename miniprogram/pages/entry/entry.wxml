@@ -5,9 +5,9 @@
       <t-cell title="作品ID" hover note="{{entry.id}}" />
       <t-cell title="作品名称" hover note="{{entry.entryName}}" />
       <t-cell title="作品描述" hover description="{{entry.description}}" style="white-space: pre-line;"/>
-      <t-cell title="创建人" hover>
-        <t-avatar slot="note" shape="round" size="small" image="{{entry.creatorInfo.userAvatar}}" />
-        <text slot="note" style="margin-left: 10rpx;font-size: 32rpx;">{{entry.creatorInfo.userName}}</text>
+      <t-cell title="{{index == 0?'第一作者':'成员'}}" hover wx:for="{{entry.members}}" wx:key="id" wx:for-item="member" wx:for-index="index">
+        <t-avatar slot="note" shape="round" size="small" image="{{member.userAvatar}}" />
+        <text slot="note" style="margin-left: 10rpx;font-size: 32rpx;">{{member.userName}}</text>
       </t-cell>
       <t-cell title="学院" hover note="{{entry.collegeName}}" />
       <t-cell title="创建时间" hover note="{{entry.createTime}}" />
@@ -55,7 +55,7 @@
     </view>
   </t-tab-panel>
   <!-- 作品成员栏 -->
-  <t-tab-panel label="作品成员" value="2" style="{{tabPanelstyle}}">
+  <!-- <t-tab-panel label="作品成员" value="2" style="{{tabPanelstyle}}">
     <view class="entry-container">
       <view class="member-list" wx:for="{{entry.members}}" wx:key="id" wx:for-item="member">
         <view class="avatar">
@@ -67,7 +67,7 @@
         </view>
       </view>
     </view>
-  </t-tab-panel>
+  </t-tab-panel> -->
   <!-- 评论栏 -->
   <t-tab-panel label="评论" value="4" style="{{tabPanelstyle}}">
     <t-fab icon="tips" bind:click="showComment" aria-label="增加"></t-fab>
