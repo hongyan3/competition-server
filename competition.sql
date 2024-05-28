@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `entry`
     `college_id`     bigint             NOT NULL COMMENT '参赛学院ID',
     `creator_id`     bigint             NOT NULL COMMENT '创建者ID',
     `status`         tinyint(1)         NOT NULL DEFAULT 0 COMMENT '作品状态 0-待审核 1-已审核通过 2-审核不通过',
-    `status_remarks` varchar(256)       NOT NULL COMMENT '状态备注',
+    `status_remarks` varchar(256)       COMMENT '状态备注',
     `create_time`    datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time`    datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `is_delete`      tinyint(1)         NOT NULL DEFAULT 1 COMMENT '逻辑删除 0-删除 1-正常'

@@ -4,14 +4,25 @@
     <div class="form">
       <a-form :model="form" :style="{ width: '600px' }" @submit="handleLogin">
         <a-form-item field="name" label="用户名">
-          <a-input v-model="form.userAccount" :style="{ width: '250px' }" placeholder="请输入用户命"/>
+          <a-input
+            v-model="form.userAccount"
+            :style="{ width: '250px' }"
+            placeholder="请输入用户名"
+          />
         </a-form-item>
         <a-form-item field="post" label="密码">
-          <a-input v-model="form.userPassword" :style="{ width: '250px' }" placeholder="请输入密码" type="password"/>
+          <a-input
+            v-model="form.userPassword"
+            :style="{ width: '250px' }"
+            placeholder="请输入密码"
+            type="password"
+          />
         </a-form-item>
         <a-form-item>
           <a-button html-type="submit" type="primary">登录</a-button>
-          <RouterLink class="register-tip" to="/register">还没有账号？去注册</RouterLink>
+          <RouterLink class="register-tip" to="/register"
+            >还没有账号？去注册</RouterLink
+          >
         </a-form-item>
       </a-form>
     </div>
@@ -58,29 +69,29 @@
 </style>
 
 <script lang="ts" setup>
-import {reactive} from 'vue';
-import {UserControllerService as userService} from '@/api'
-import {message} from "@/utils/message";
+import { reactive } from "vue";
+import { UserControllerService as userService } from "@/api";
+import { message } from "@/utils/message";
 import router from "@/router";
 
 const form = reactive({
-  userAccount: '',
-  userPassword: ''
-})
+  userAccount: "",
+  userPassword: "",
+});
 
 const handleLogin = () => {
   userService.userLoginUsingPost(form).then((res) => {
     if (res.code == 0) {
-      message.success('欢迎回来, ' + res.data.userName)
-      localStorage.setItem('userInfo', res.data)
+      message.success("欢迎回来, " + res.data.userName);
+      localStorage.setItem("userInfo", res.data);
       setTimeout(() => {
         router.push({
-          path: '/'
-        })
-      }, 1500)
+          path: "/",
+        });
+      }, 1500);
     } else {
-      message.error(res.message)
+      message.error(res.message);
     }
-  })
-}
+  });
+};
 </script>
