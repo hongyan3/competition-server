@@ -13,12 +13,17 @@ import com.xiyuan.project.model.dto.entry.EntryQueryRequest;
 import com.xiyuan.project.model.dto.entry.EntryUpdateRequest;
 import com.xiyuan.project.model.dto.entry.EntryUpdateStatusRequest;
 import com.xiyuan.project.model.entity.Entry;
+import com.xiyuan.project.model.entity.EntryMember;
+import com.xiyuan.project.model.entity.User;
 import com.xiyuan.project.model.enums.UserRoleEnum;
 import com.xiyuan.project.model.vo.EntryVO;
+import com.xiyuan.project.service.EntryMemberService;
 import com.xiyuan.project.service.EntryService;
+import com.xiyuan.project.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -31,18 +36,29 @@ import java.util.List;
 public class EntryAdminController {
     @Resource
     EntryService entryService;
+    @Resource
+    UserService userService;
+    @Resource
+    EntryMemberService entryMemberService;
 
     @PostMapping
     @AuthCheck(AccessRole = UserRoleEnum.ADMIN)
-    public BaseResponse<Long> addEntry(@RequestBody EntryAddRequest addRequest) {
+    public BaseResponse<Long> addEntry(@RequestBody EntryAddRequest addRequest, HttpServletRequest request) {
         if (addRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         Entry entry = new Entry();
+        User user = userService.getLoginUser(request);
         BeanUtils.copyProperties(addRequest, entry);
+        entry.setCreatorId(user.getId());
         entryService.validEntry(entry, true);
         boolean result = entryService.save(entry);
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
+        // 添加自己为成员
+        EntryMember entryMember = new EntryMember();
+        entryMember.setEntryId(entry.getId());
+        entryMember.setMemberId(entry.getCreatorId());
+        entryMemberService.addEntryMember(entryMember);
         return ResultUtils.success(entry.getId());
     }
 
