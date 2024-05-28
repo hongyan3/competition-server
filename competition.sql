@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `entry_comment`
     `content`      text               NOT NULL COMMENT '评论内容',
     `entry_id`     bigint             NOT NULL COMMENT '作品ID',
     `user_id`      bigint             NOT NULL COMMENT '评论人ID',
-    `comment_type` tinyint            NOT NULL DEFAULT 1 COMMENT '评论类型 1-评论 2-回复',
+    `comment_type` tinyint(1)            NOT NULL DEFAULT 1 COMMENT '评论类型 1-评论 2-回复',
     `reply_id`     bigint COMMENT '回复的评论ID',
     `create_time`  datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time`  datetime           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',

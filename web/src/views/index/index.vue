@@ -2,9 +2,7 @@
   <div class="container">
     <a-layout :style="{ height: '100%' }">
       <a-layout-sider :collapsed="collapsed" :width="220" breakpoint="lg" collapsible @collapse="onCollapse">
-        <div class="logo">
-          <div>软件2001 陈铭</div>
-        </div>
+
         <a-menu :defaultOpenKeys="['1']" :defaultSelectedKeys="['0_2']" @menuItemClick="onClickMenuItem">
           <!-- <a-menu-item key="/home">
             <IconHome />
@@ -33,6 +31,11 @@
       <a-layout>
         <a-layout-header>
           <a-row class="navigation" justify="end">
+            <a-col :span="10">
+              <div class="logo">
+                软件2001 陈铭
+              </div>
+            </a-col>
             <a-dropdown>
               <a-col :span="3">
                 <div class="user-avatar">
