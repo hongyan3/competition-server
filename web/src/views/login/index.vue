@@ -1,6 +1,6 @@
 <template>
   <div class="login-form">
-    <div class="title">竞赛展示系统管理后台</div>
+    <div class="title">竞赛展示系统管理后台-软件2001 陈铭</div>
     <div class="form">
       <a-form :model="form" :style="{ width: '600px' }" @submit="handleLogin">
         <a-form-item field="name" label="用户名">

@@ -163,6 +163,14 @@ const addUserHandle = () => {
   })
 }
 const deleteUserHandle = (id: number) => {
+  userService.deleteUserUsingDelete(id).then((res) => {
+    if (res.code == 0) {
+      message.success("删除成功")
+      getUserList()
+    } else {
+      message.error("删除失败： "+res.message)
+    }
+  })
   // todo
 }
 </script>

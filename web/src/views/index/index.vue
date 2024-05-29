@@ -32,7 +32,7 @@
         <a-layout-header>
           <a-row class="navigation" justify="end">
             <a-col :span="10">
-              <div class="logo">
+              <div class="logon">
                 软件2001 陈铭
               </div>
             </a-col>
